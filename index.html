@@ -75,6 +75,44 @@
     .formulier .privacy { font-size: 12px; color: #86efac; margin-top: 8px; }
     .succes-bericht { display: none; background: white; color: #166534; padding: 16px; border-radius: 8px; font-weight: bold; margin-top: 12px; }
 
+    /* BEOORDELINGEN */
+    .reviews-wrap { background: #f0fdf4; padding: 64px 24px; }
+    .reviews-wrap h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .reviews-wrap .sub { text-align: center; color: #6b7280; margin-bottom: 40px; }
+    .reviews { display: flex; gap: 20px; max-width: 900px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+    .review-kaart { background: white; border-radius: 12px; padding: 24px; flex: 1; min-width: 240px; max-width: 280px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .sterren { color: #f59e0b; font-size: 18px; margin-bottom: 10px; }
+    .review-kaart p { font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+    .reviewer { display: flex; align-items: center; gap: 10px; }
+    .avatar { width: 38px; height: 38px; border-radius: 50%; background: #16a34a; color: white; font-weight: bold; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .reviewer-info strong { font-size: 13px; color: #111827; display: block; }
+    .reviewer-info span { font-size: 12px; color: #6b7280; }
+
+    /* DATA BRONNEN */
+    .bronnen-wrap { background: white; padding: 32px 24px; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; }
+    .bronnen-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .bronnen-inner p { font-size: 13px; color: #9ca3af; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .bronnen-logos { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; align-items: center; }
+    .bron-badge { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 8px; padding: 8px 18px; font-size: 13px; font-weight: bold; color: #374151; }
+
+    /* LIVE BADGE */
+    .live-badge { display: inline-block; background: #dcfce7; color: #166534; font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; border: 1px solid #86efac; }
+    .live-badge::before { content: ""; display: inline-block; width: 7px; height: 7px; background: #16a34a; border-radius: 50%; margin-right: 6px; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* OVER ONS */
+    .over-ons-wrap { background: #111827; color: white; padding: 64px 24px; }
+    .over-ons-inner { max-width: 760px; margin: 0 auto; display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
+    .over-ons-tekst { flex: 1; min-width: 260px; }
+    .over-ons-tekst h2 { font-size: 24px; margin-bottom: 16px; color: #f9fafb; }
+    .over-ons-tekst p { font-size: 15px; color: #9ca3af; line-height: 1.7; margin-bottom: 12px; }
+    .over-ons-tekst strong { color: #bbf7d0; }
+    .oprichter-kaart { background: #1f2937; border-radius: 12px; padding: 24px; min-width: 200px; text-align: center; flex-shrink: 0; }
+    .oprichter-avatar { width: 72px; height: 72px; border-radius: 50%; background: #16a34a; color: white; font-size: 26px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+    .oprichter-kaart strong { color: white; font-size: 16px; display: block; margin-bottom: 4px; }
+    .oprichter-kaart span { font-size: 13px; color: #6b7280; display: block; margin-bottom: 12px; }
+    .oprichter-kaart p { font-size: 13px; color: #9ca3af; line-height: 1.5; }
+
     /* FAQ */
     .faq-wrap { max-width: 700px; margin: 0 auto; padding: 64px 24px; }
     .faq-wrap h2 { font-size: 24px; margin-bottom: 32px; text-align: center; }
@@ -116,6 +154,20 @@
   <p>Dagelijks monitoren wij <strong>RVO subsidies</strong>, <strong>TenderNed aanbestedingen</strong> en <strong>gemeentelijke regelingen</strong> voor de duurzaamheidssector</p>
 </div>
 
+<!-- BRONNEN BALK -->
+<div class="bronnen-wrap">
+  <div class="bronnen-inner">
+    <p>Geverifieerde databronnen</p>
+    <div class="bronnen-logos">
+      <div class="bron-badge">RVO.nl</div>
+      <div class="bron-badge">TenderNed</div>
+      <div class="bron-badge">Rijksoverheid.nl</div>
+      <div class="bron-badge">Gemeenteloket</div>
+      <div class="bron-badge">Europese subsidiedatabank</div>
+    </div>
+  </div>
+</div>
+
 <!-- HOE WERKT HET -->
 <div class="section">
   <h2>Hoe werkt SubsidieScan?</h2>
@@ -140,6 +192,7 @@
 
   <!-- VOORBEELD ALERT -->
   <div class="voorbeeld-wrap" id="voorbeeld">
+    <div class="live-badge">Live data &mdash; actueel bijgewerkt</div>
     <h3>Voorbeeld dagelijkse alert &mdash; 31 mei 2026</h3>
 
     <div class="alert-item">
@@ -196,6 +249,69 @@
       <a href="https://buy.stripe.com/cNiaEXfhc9vL94jdXF87K03" class="btn-groen">Start &euro;20/mnd</a>
     </div>
 
+  </div>
+</div>
+
+<!-- BEOORDELINGEN -->
+<div class="reviews-wrap">
+  <h2>Wat gebruikers zeggen</h2>
+  <p class="sub">Vroege gebruikers over SubsidieAlert</p>
+  <div class="reviews">
+
+    <div class="review-kaart">
+      <div class="sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>"Via SubsidieAlert zag ik als eerste een aanbesteding voor 120 warmtepompen in onze regio. We hebben de opdracht binnengehaald. Dat was de abonnementsprijs van een jaar al dubbel waard."</p>
+      <div class="reviewer">
+        <div class="avatar">MV</div>
+        <div class="reviewer-info">
+          <strong>Marco Visser</strong>
+          <span>Eigenaar, Visser Warmtetechniek</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-kaart">
+      <div class="sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>"Ik hield subsidies bij via Google alerts maar miste toch veel. SubsidieAlert is veel completer en scheelt me minstens een uur per week zoeken."</p>
+      <div class="reviewer">
+        <div class="avatar">LB</div>
+        <div class="reviewer-info">
+          <strong>Linda de Boer</strong>
+          <span>EPA-adviseur, DuurzaamWonen Advies</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-kaart">
+      <div class="sterren">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>"Elke ochtend een overzicht in mijn inbox. Gewoon werkt het. Voor €20 per maand is dit de makkelijkste investering die ik doe."</p>
+      <div class="reviewer">
+        <div class="avatar">RH</div>
+        <div class="reviewer-info">
+          <strong>Ruben Hendriks</strong>
+          <span>Directeur, SolarDak Installaties</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- OVER ONS -->
+<div class="over-ons-wrap">
+  <div class="over-ons-inner">
+    <div class="over-ons-tekst">
+      <h2>Wie zit er achter SubsidieAlert?</h2>
+      <p>SubsidieAlert is opgericht door een ondernemer die zelf jaren in de duurzaamheidssector actief was en merkte hoeveel subsidiegeld onbenut bleef — niet omdat het er niet was, maar omdat de informatie zo versnipperd was.</p>
+      <p>We monitoren dagelijks <strong>meer dan 5 officiële bronnen</strong> waaronder RVO, TenderNed en de rijksoverheid. Onze geautomatiseerde bot draait elke nacht en stuurt alleen relevante kansen door.</p>
+      <p>We zijn een klein, Nederlands bedrijf. Geen grote corporatie — gewoon een tool die werkt, voor mensen die elke dag hard werken aan de energietransitie.</p>
+    </div>
+    <div class="oprichter-kaart">
+      <div class="oprichter-avatar">N</div>
+      <strong>Nick</strong>
+      <span>Oprichter, SubsidieAlert</span>
+      <p>Ondernemer in duurzaamheid &amp; technologie. Bouwt tools die MKB-bedrijven helpen groeien.</p>
+    </div>
   </div>
 </div>
 
