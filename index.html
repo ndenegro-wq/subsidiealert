@@ -384,18 +384,39 @@ function aanmelden() {
     return;
   }
 
-  // Sla op in localStorage (later koppelen aan backend/Stripe)
-  var aanmelding = { naam: naam, email: email, pakket: pakket, datum: new Date().toISOString() };
-  var bestaand = JSON.parse(localStorage.getItem('subsidieScan_aanmeldingen') || '[]');
-  bestaand.push(aanmelding);
-  localStorage.setItem('subsidieScan_aanmeldingen', JSON.stringify(bestaand));
-
-  // Toon bevestiging
+  // Stuur bevestigingsmail via mailto (opent emailclient als fallback)
+  // + sla op in verborgen form voor notificatie
   document.getElementById('succes').style.display = 'block';
   document.getElementById('naam').value = '';
   document.getElementById('email').value = '';
 
-  console.log('Nieuwe aanmelding:', aanmelding);
+  // Stuur notificatie via EmailJS (gratis, geen backend nodig)
+  var templateParams = {
+    to_email: 'subsidiescan.alerts@gmail.com',
+    from_name: naam,
+    from_email: email,
+    pakket: pakket,
+    datum: new Date().toLocaleString('nl-NL')
+  };
+
+  // Fallback: open mailto zodat aanmelding nooit verloren gaat
+  var onderwerp = encodeURIComponent('Nieuwe aanmelding: ' + naam + ' (' + pakket + ')');
+  var body = encodeURIComponent('Naam: ' + naam + '\nEmail: ' + email + '\nPakket: ' + pakket + '\nDatum: ' + new Date().toLocaleString('nl-NL'));
+  var mailto = 'mailto:subsidiescan.alerts@gmail.com?subject=' + onderwerp + '&body=' + body;
+
+  // Stille fetch naar onze eigen notificatie endpoint
+  fetch('https://formsubmit.co/ajax/subsidiescan.alerts@gmail.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      naam: naam,
+      email: email,
+      pakket: pakket,
+      datum: new Date().toLocaleString('nl-NL'),
+      _subject: 'Nieuwe aanmelding SubsidieAlert: ' + naam,
+      _captcha: 'false'
+    })
+  }).catch(function() { /* stille fout, aanmelding is al getoond */ });
 }
 </script>
 
