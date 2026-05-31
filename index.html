@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SubsidieScan — Dagelijkse subsidie-alerts voor de duurzaamheidssector</title>
+  <meta name="description" content="Mis nooit meer een subsidie of aanbesteding. SubsidieScan stuurt installateurs en energieadviseurs elke ochtend een overzicht van nieuwe kansen.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f9fafb; color: #1f2937; }
+
+    /* NAV */
+    nav { background: #16a34a; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
+    nav .logo { color: white; font-size: 20px; font-weight: bold; letter-spacing: -0.5px; }
+    nav .logo span { color: #bbf7d0; }
+    nav a.cta-nav { background: white; color: #16a34a; padding: 8px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 14px; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, #14532d 0%, #16a34a 100%); color: white; text-align: center; padding: 64px 24px 80px; }
+    .hero h1 { font-size: 36px; line-height: 1.2; margin-bottom: 16px; }
+    .hero h1 span { color: #bbf7d0; }
+    .hero p { font-size: 18px; color: #dcfce7; max-width: 560px; margin: 0 auto 32px; line-height: 1.6; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: white; color: #16a34a; padding: 14px 28px; border-radius: 8px; font-weight: bold; font-size: 16px; text-decoration: none; display: inline-block; }
+    .btn-secondary { background: transparent; color: white; border: 2px solid white; padding: 14px 28px; border-radius: 8px; font-size: 16px; text-decoration: none; display: inline-block; }
+    .hero-sub { margin-top: 20px; font-size: 13px; color: #86efac; }
+
+    /* SOCIAL PROOF */
+    .proof { background: white; padding: 16px 24px; text-align: center; border-bottom: 1px solid #e5e7eb; }
+    .proof p { font-size: 14px; color: #6b7280; }
+    .proof strong { color: #16a34a; }
+
+    /* HOE WERKT HET */
+    .section { padding: 64px 24px; max-width: 900px; margin: 0 auto; }
+    .section h2 { font-size: 26px; text-align: center; margin-bottom: 8px; color: #111827; }
+    .section .sub { text-align: center; color: #6b7280; margin-bottom: 40px; font-size: 16px; }
+    .stappen { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .stap { flex: 1; min-width: 220px; max-width: 260px; text-align: center; }
+    .stap .nr { width: 48px; height: 48px; border-radius: 50%; background: #dcfce7; color: #16a34a; font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+    .stap h3 { font-size: 15px; margin-bottom: 6px; }
+    .stap p { font-size: 13px; color: #6b7280; line-height: 1.5; }
+
+    /* VOORBEELD ALERT */
+    .voorbeeld-wrap { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 32px; margin-top: 48px; }
+    .voorbeeld-wrap h3 { color: #166534; margin-bottom: 16px; font-size: 16px; }
+    .alert-item { background: white; border-left: 4px solid #22c55e; padding: 12px 16px; margin-bottom: 10px; border-radius: 4px; }
+    .alert-item h4 { font-size: 14px; color: #166534; margin-bottom: 4px; }
+    .alert-item p { font-size: 12px; color: #6b7280; }
+    .alert-item-blue { border-left-color: #3b82f6; }
+    .alert-item-blue h4 { color: #1e40af; }
+
+    /* PRIJZEN */
+    .prijzen-wrap { background: #f9fafb; padding: 64px 24px; }
+    .prijzen { display: flex; gap: 20px; max-width: 760px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+    .prijs-kaart { background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 28px; flex: 1; min-width: 240px; max-width: 320px; }
+    .prijs-kaart.aanbevolen { border-color: #16a34a; position: relative; }
+    .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #16a34a; color: white; font-size: 11px; padding: 3px 12px; border-radius: 20px; white-space: nowrap; }
+    .prijs-kaart h3 { font-size: 18px; margin-bottom: 6px; }
+    .prijs-kaart .bedrag { font-size: 36px; font-weight: bold; color: #16a34a; }
+    .prijs-kaart .bedrag span { font-size: 16px; font-weight: normal; color: #6b7280; }
+    .prijs-kaart ul { list-style: none; margin: 16px 0 24px; }
+    .prijs-kaart ul li { font-size: 14px; color: #374151; padding: 4px 0; }
+    .prijs-kaart ul li::before { content: "v "; color: #16a34a; font-weight: bold; }
+    .btn-groen { background: #16a34a; color: white; padding: 12px 24px; border-radius: 8px; border: none; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; text-align: center; display: block; text-decoration: none; }
+    .btn-outline { background: white; color: #16a34a; border: 2px solid #16a34a; padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; text-align: center; display: block; text-decoration: none; }
+
+    /* AANMELDFORMULIER */
+    .aanmeld-wrap { background: #16a34a; padding: 64px 24px; text-align: center; }
+    .aanmeld-wrap h2 { color: white; font-size: 26px; margin-bottom: 10px; }
+    .aanmeld-wrap p { color: #dcfce7; font-size: 16px; margin-bottom: 28px; }
+    .formulier { max-width: 480px; margin: 0 auto; }
+    .formulier input { width: 100%; padding: 14px 16px; border: none; border-radius: 8px; font-size: 15px; margin-bottom: 10px; }
+    .formulier select { width: 100%; padding: 14px 16px; border: none; border-radius: 8px; font-size: 15px; margin-bottom: 10px; background: white; color: #374151; }
+    .formulier .btn-aanmeld { background: #14532d; color: white; padding: 14px; border-radius: 8px; border: none; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; }
+    .formulier .privacy { font-size: 12px; color: #86efac; margin-top: 8px; }
+    .succes-bericht { display: none; background: white; color: #166534; padding: 16px; border-radius: 8px; font-weight: bold; margin-top: 12px; }
+
+    /* FAQ */
+    .faq-wrap { max-width: 700px; margin: 0 auto; padding: 64px 24px; }
+    .faq-wrap h2 { font-size: 24px; margin-bottom: 32px; text-align: center; }
+    .faq-item { border-bottom: 1px solid #e5e7eb; padding: 16px 0; }
+    .faq-item h3 { font-size: 15px; color: #111827; margin-bottom: 6px; }
+    .faq-item p { font-size: 14px; color: #6b7280; line-height: 1.6; }
+
+    /* FOOTER */
+    footer { background: #111827; color: #9ca3af; text-align: center; padding: 24px; font-size: 13px; }
+    footer a { color: #6b7280; text-decoration: none; margin: 0 8px; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 26px; }
+      .stappen { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Subsidie<span>Scan</span></div>
+  <a href="#aanmelden" class="cta-nav">Gratis proberen</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Mis nooit meer een <span>subsidie</span> of aanbesteding</h1>
+  <p>Elke ochtend een overzicht in uw inbox — speciaal voor installateurs, energieadviseurs en isolatiebedrijven.</p>
+  <div class="hero-btns">
+    <a href="https://buy.stripe.com/cNiaEXfhc9vL94jdXF87K03" class="btn-primary">Start nu &euro;20/mnd</a>
+    <a href="#voorbeeld" class="btn-secondary">Bekijk voorbeeld</a>
+  </div>
+  <p class="hero-sub">14 dagen gratis &nbsp;·&nbsp; Geen creditcard nodig &nbsp;·&nbsp; Opzeggen wanneer u wilt</p>
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="proof">
+  <p>Dagelijks monitoren wij <strong>RVO subsidies</strong>, <strong>TenderNed aanbestedingen</strong> en <strong>gemeentelijke regelingen</strong> voor de duurzaamheidssector</p>
+</div>
+
+<!-- HOE WERKT HET -->
+<div class="section">
+  <h2>Hoe werkt SubsidieScan?</h2>
+  <p class="sub">In drie stappen op de hoogte van alle kansen</p>
+  <div class="stappen">
+    <div class="stap">
+      <div class="nr">1</div>
+      <h3>U meldt zich aan</h3>
+      <p>Geef uw sector, regio en zoektermen op. Wij stellen uw persoonlijk filter in.</p>
+    </div>
+    <div class="stap">
+      <div class="nr">2</div>
+      <h3>Wij monitoren 24/7</h3>
+      <p>Onze bot controleert elke dag RVO, TenderNed en andere bronnen op nieuwe kansen.</p>
+    </div>
+    <div class="stap">
+      <div class="nr">3</div>
+      <h3>U ontvangt de alert</h3>
+      <p>Elke ochtend een overzichtelijke e-mail met alleen wat voor u relevant is.</p>
+    </div>
+  </div>
+
+  <!-- VOORBEELD ALERT -->
+  <div class="voorbeeld-wrap" id="voorbeeld">
+    <h3>Voorbeeld dagelijkse alert &mdash; 31 mei 2026</h3>
+
+    <div class="alert-item">
+      <h4>ISDE &mdash; Investeringssubsidie Duurzame Energie</h4>
+      <p>Subsidie voor warmtepompen, zonneboilers en isolatie &nbsp;|&nbsp; Sluiting: 31-12-2026 &nbsp;|&nbsp; Bron: RVO</p>
+    </div>
+    <div class="alert-item">
+      <h4>SDE++ &mdash; Stimulering Duurzame Energieproductie</h4>
+      <p>Subsidie voor grootschalige hernieuwbare energieproductie &nbsp;|&nbsp; Sluiting: Wisselend &nbsp;|&nbsp; Bron: RVO</p>
+    </div>
+    <div class="alert-item alert-item-blue">
+      <h4>Levering en plaatsing zonnepanelen &mdash; Gemeente Utrecht</h4>
+      <p>Aanbesteding: levering en installatie zonnepanelen gemeentelijke gebouwen &nbsp;|&nbsp; Sluiting: 2026-07-15 &nbsp;|&nbsp; Bron: TenderNed</p>
+    </div>
+    <div class="alert-item alert-item-blue">
+      <h4>Warmtepompen verduurzaming woningcorporatie &mdash; Woonstad Rotterdam</h4>
+      <p>Aanbesteding: levering en installatie 340 warmtepompen &nbsp;|&nbsp; Sluiting: 2026-08-01 &nbsp;|&nbsp; Bron: TenderNed</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRIJZEN -->
+<div class="prijzen-wrap" id="prijzen">
+  <div style="max-width:900px;margin:0 auto;">
+    <h2 style="font-size:26px;text-align:center;margin-bottom:8px;">Eenvoudige prijzen</h2>
+    <p style="text-align:center;color:#6b7280;margin-bottom:36px;">Start klein, schaal op wanneer u wilt</p>
+  </div>
+  <div class="prijzen">
+
+    <div class="prijs-kaart">
+      <h3>Basis</h3>
+      <div class="bedrag">&euro;15<span>/maand</span></div>
+      <ul>
+        <li>1 e-mailadres</li>
+        <li>RVO subsidies</li>
+        <li>TenderNed aanbestedingen</li>
+        <li>Dagelijkse e-mail alert</li>
+        <li>14 dagen gratis proberen</li>
+      </ul>
+      <a href="https://buy.stripe.com/8x2fZh0miazP1BR4n587K02" class="btn-outline">Start &euro;15/mnd</a>
+    </div>
+
+    <div class="prijs-kaart aanbevolen">
+      <div class="badge">Meest gekozen</div>
+      <h3>Pro</h3>
+      <div class="bedrag">&euro;20<span>/maand</span></div>
+      <ul>
+        <li>3 e-mailadressen</li>
+        <li>Alle bronnen + gemeenten</li>
+        <li>Gefilterd op uw sector &amp; regio</li>
+        <li>Dagelijks + wekelijks overzicht</li>
+        <li>14 dagen gratis proberen</li>
+      </ul>
+      <a href="https://buy.stripe.com/cNiaEXfhc9vL94jdXF87K03" class="btn-groen">Start &euro;20/mnd</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- AANMELDFORMULIER -->
+<div class="aanmeld-wrap" id="aanmelden">
+  <h2>Start uw gratis proefperiode</h2>
+  <p>14 dagen volledig gratis &mdash; geen creditcard nodig</p>
+  <div class="formulier">
+    <input type="text" id="naam" placeholder="Uw naam of bedrijfsnaam" required>
+    <input type="email" id="email" placeholder="E-mailadres voor de alerts" required>
+    <select id="pakket">
+      <option value="basis">Basis &mdash; &euro;29/maand</option>
+      <option value="pro" selected>Pro &mdash; &euro;49/maand (aanbevolen)</option>
+    </select>
+    <button class="btn-aanmeld" onclick="aanmelden()">Ja, stuur mij dagelijkse alerts</button>
+    <p class="privacy">Uw gegevens worden alleen gebruikt voor de SubsidieScan alerts. Nooit doorverkopen.</p>
+    <div class="succes-bericht" id="succes">
+      Bedankt! U ontvangt morgenochtend uw eerste alert. Welkom bij SubsidieScan!
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-wrap">
+  <h2>Veelgestelde vragen</h2>
+
+  <div class="faq-item">
+    <h3>Welke subsidies monitort SubsidieScan?</h3>
+    <p>Wij monitoren alle RVO-regelingen (ISDE, SDE++, EIA, SEEH, MIA/Vamil en meer), aanbestedingen op TenderNed en aanvullende gemeentelijke regelingen voor de duurzaamheidssector.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Hoe snel krijg ik bericht na een nieuwe subsidie?</h3>
+    <p>Elke ochtend voor 08:00 ontvangt u een overzicht van alles wat de dag ervoor nieuw is gepubliceerd. U bent daarmee eerder op de hoogte dan uw concurrenten.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Kan ik mijn eigen zoektermen instellen?</h3>
+    <p>Ja. In het Pro-pakket kunt u uw alerts filteren op sector, regio en specifieke trefwoorden. Zo ontvangt u alleen wat echt relevant is voor uw bedrijf.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Hoe werkt de gratis proefperiode?</h3>
+    <p>U ontvangt 14 dagen lang alle alerts gratis en vrijblijvend. Daarna kiest u of u wilt doorgaan. Geen automatische afschrijving zonder uw bevestiging.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Voor wie is SubsidieScan bedoeld?</h3>
+    <p>Voor installateurs, energieadviseurs, isolatiebedrijven, duurzaamheidsadviseurs en andere MKB-bedrijven die actief zijn in de energietransitie.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 SubsidieScan &nbsp;&mdash;&nbsp;
+    <a href="mailto:info@subsidiealert.nl">info@subsidiealert.nl</a> &nbsp;|&nbsp;
+    <a href="#">Privacy</a> &nbsp;|&nbsp;
+    <a href="#">Voorwaarden</a>
+  </p>
+</footer>
+
+<script>
+function aanmelden() {
+  var naam = document.getElementById('naam').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var pakket = document.getElementById('pakket').value;
+
+  if (!naam || !email) {
+    alert('Vul uw naam en e-mailadres in.');
+    return;
+  }
+  if (!email.includes('@')) {
+    alert('Voer een geldig e-mailadres in.');
+    return;
+  }
+
+  // Sla op in localStorage (later koppelen aan backend/Stripe)
+  var aanmelding = { naam: naam, email: email, pakket: pakket, datum: new Date().toISOString() };
+  var bestaand = JSON.parse(localStorage.getItem('subsidieScan_aanmeldingen') || '[]');
+  bestaand.push(aanmelding);
+  localStorage.setItem('subsidieScan_aanmeldingen', JSON.stringify(bestaand));
+
+  // Toon bevestiging
+  document.getElementById('succes').style.display = 'block';
+  document.getElementById('naam').value = '';
+  document.getElementById('email').value = '';
+
+  console.log('Nieuwe aanmelding:', aanmelding);
+}
+</script>
+
+</body>
+</html>
