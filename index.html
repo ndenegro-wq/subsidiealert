@@ -196,6 +196,67 @@
       .calc-rij { flex-direction: column; }
       .deadline-item { flex-wrap: wrap; }
     }
+
+    /* VERGELIJKINGSTABEL */
+    .vergelijk-wrap { background: #f9fafb; padding: 64px 24px; }
+    .vergelijk-inner { max-width: 860px; margin: 0 auto; }
+    .vergelijk-inner h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .vergelijk-inner .sub { text-align: center; color: #6b7280; margin-bottom: 36px; font-size: 15px; }
+    .vergelijk-tabel { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
+    .vergelijk-tabel th { padding: 16px 20px; font-size: 14px; font-weight: bold; }
+    .vergelijk-tabel th:first-child { background: #f3f4f6; color: #374151; text-align: left; }
+    .vergelijk-tabel th.kol-ons { background: #16a34a; color: white; text-align: center; }
+    .vergelijk-tabel th.kol-zelf { background: #6b7280; color: white; text-align: center; }
+    .vergelijk-tabel th.kol-ander { background: #374151; color: white; text-align: center; }
+    .vergelijk-tabel td { padding: 14px 20px; font-size: 14px; border-bottom: 1px solid #e5e7eb; background: white; }
+    .vergelijk-tabel td:first-child { color: #374151; font-weight: 500; background: #f9fafb; }
+    .vergelijk-tabel td.center { text-align: center; }
+    .vergelijk-tabel tr:last-child td { border-bottom: none; }
+    .vink { color: #16a34a; font-size: 18px; font-weight: bold; }
+    .kruis { color: #ef4444; font-size: 18px; }
+    .half { color: #f59e0b; font-size: 15px; }
+    .vergelijk-cta { text-align: center; margin-top: 28px; }
+
+    /* EBOOK SECTIE */
+    .ebook-wrap { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); padding: 56px 24px; color: white; }
+    .ebook-inner { max-width: 760px; margin: 0 auto; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+    .ebook-tekst { flex: 1; min-width: 260px; }
+    .ebook-tekst .ebook-tag { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; font-size: 12px; padding: 4px 14px; margin-bottom: 14px; }
+    .ebook-tekst h2 { font-size: 24px; margin-bottom: 10px; line-height: 1.3; }
+    .ebook-tekst p { color: #bfdbfe; font-size: 15px; margin-bottom: 20px; line-height: 1.6; }
+    .ebook-tekst ul { list-style: none; margin-bottom: 24px; }
+    .ebook-tekst ul li { font-size: 14px; color: #dbeafe; padding: 4px 0; }
+    .ebook-tekst ul li::before { content: "✓ "; color: #93c5fd; font-weight: bold; }
+    .ebook-form { background: white; border-radius: 12px; padding: 24px; flex-shrink: 0; width: 280px; }
+    .ebook-form h3 { font-size: 16px; color: #1e40af; margin-bottom: 6px; }
+    .ebook-form p { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+    .ebook-form input { width: 100%; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; margin-bottom: 10px; }
+    .ebook-form button { background: #1e40af; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; width: 100%; }
+    .ebook-succes { display: none; background: #f0fdf4; border: 1px solid #22c55e; border-radius: 8px; padding: 14px; text-align: center; color: #166534; font-size: 14px; margin-top: 10px; }
+
+    /* HULPKNOP / CHATBOT */
+    .hulp-knop { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
+    .hulp-icoon { width: 56px; height: 56px; background: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 16px rgba(22,163,74,0.4); transition: transform 0.2s; }
+    .hulp-icoon:hover { transform: scale(1.1); }
+    .hulp-icoon svg { width: 26px; height: 26px; fill: white; }
+    .hulp-popup { display: none; position: absolute; bottom: 68px; right: 0; width: 300px; background: white; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.16); overflow: hidden; }
+    .hulp-popup.open { display: block; }
+    .hulp-header { background: #16a34a; color: white; padding: 16px 18px; display: flex; align-items: center; gap: 10px; }
+    .hulp-header .hulp-avatar { width: 36px; height: 36px; border-radius: 50%; background: #14532d; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .hulp-header h4 { font-size: 14px; margin-bottom: 2px; }
+    .hulp-header p { font-size: 11px; color: #bbf7d0; }
+    .hulp-vragen { padding: 16px; }
+    .hulp-vragen p { font-size: 13px; color: #374151; margin-bottom: 12px; }
+    .hulp-vraag { display: block; width: 100%; text-align: left; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #166534; cursor: pointer; margin-bottom: 8px; }
+    .hulp-vraag:hover { background: #dcfce7; }
+    .hulp-antwoord { display: none; padding: 0 16px 16px; }
+    .hulp-antwoord.zichtbaar { display: block; }
+    .hulp-antwoord p { font-size: 13px; color: #374151; line-height: 1.6; background: #f9fafb; padding: 12px; border-radius: 8px; }
+    .hulp-antwoord a { color: #16a34a; font-weight: bold; text-decoration: none; }
+    .hulp-terug { background: none; border: none; color: #16a34a; font-size: 13px; cursor: pointer; padding: 0 0 8px; display: block; }
+    .hulp-footer { padding: 12px 16px; border-top: 1px solid #e5e7eb; text-align: center; }
+    .hulp-footer a { background: #16a34a; color: white; text-decoration: none; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: bold; display: inline-block; }
+    .hulp-badge { position: absolute; top: -4px; right: -4px; background: #ef4444; color: white; font-size: 11px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -822,6 +883,196 @@ function aanmelden(event) {
     var lichaam = encodeURIComponent('Naam: ' + naam + '\nEmail: ' + email + '\nPakket: ' + pakket + '\nDatum: ' + new Date().toLocaleString('nl-NL'));
     window.location.href = 'mailto:subsidiescan.alerts@gmail.com?subject=' + onderwerp + '&body=' + lichaam;
   });
+}
+</script>
+
+<!-- VERGELIJKINGSTABEL -->
+<div class="vergelijk-wrap" id="vergelijk">
+  <div class="vergelijk-inner">
+    <h2>Waarom SubsidieScan?</h2>
+    <p class="sub">Vergelijk zelf — en zie waarom honderden bedrijven ons gebruiken</p>
+    <table class="vergelijk-tabel">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="kol-ons">SubsidieScan</th>
+          <th class="kol-zelf">Zelf zoeken</th>
+          <th class="kol-ander">Concurrent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dagelijkse alert om 7:00</td>
+          <td class="center"><span class="vink">&#10003;</span></td>
+          <td class="center"><span class="kruis">&#10007;</span></td>
+          <td class="center"><span class="half">soms</span></td>
+        </tr>
+        <tr>
+          <td>Gefilterd op uw sector</td>
+          <td class="center"><span class="vink">&#10003;</span></td>
+          <td class="center"><span class="kruis">&#10007;</span></td>
+          <td class="center"><span class="half">beperkt</span></td>
+        </tr>
+        <tr>
+          <td>RVO + TenderNed + gemeenten</td>
+          <td class="center"><span class="vink">&#10003;</span></td>
+          <td class="center"><span class="half">tijdrovend</span></td>
+          <td class="center"><span class="kruis">&#10007;</span></td>
+        </tr>
+        <tr>
+          <td>Subsidie Calculator</td>
+          <td class="center"><span class="vink">&#10003;</span></td>
+          <td class="center"><span class="kruis">&#10007;</span></td>
+          <td class="center"><span class="kruis">&#10007;</span></td>
+        </tr>
+        <tr>
+          <td>Deadline reminders</td>
+          <td class="center"><span class="vink">&#10003;</span></td>
+          <td class="center"><span class="kruis">&#10007;</span></td>
+          <td class="center"><span class="half">soms</span></td>
+        </tr>
+        <tr>
+          <td>Geen extra software nodig</td>
+          <td class="center"><span class="vink">&#10003;</span></td>
+          <td class="center"><span class="vink">&#10003;</span></td>
+          <td class="center"><span class="kruis">&#10007;</span></td>
+        </tr>
+        <tr>
+          <td>Prijs per maand</td>
+          <td class="center"><strong style="color:#16a34a">€15</strong></td>
+          <td class="center"><span style="color:#6b7280">uren werk</span></td>
+          <td class="center"><span style="color:#6b7280">&gt;€50</span></td>
+        </tr>
+        <tr>
+          <td>14 dagen gratis proberen</td>
+          <td class="center"><span class="vink">&#10003;</span></td>
+          <td class="center">—</td>
+          <td class="center"><span class="kruis">&#10007;</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="vergelijk-cta">
+      <a href="#aanmelden" class="btn-groen" style="display:inline-block;width:auto;padding:14px 36px;font-size:16px;">Start 14 dagen gratis</a>
+    </div>
+  </div>
+</div>
+
+<!-- GRATIS EBOOK / LEAD MAGNET -->
+<div class="ebook-wrap" id="ebook">
+  <div class="ebook-inner">
+    <div class="ebook-tekst">
+      <span class="ebook-tag">GRATIS GIDS &mdash; direct te downloaden</span>
+      <h2>De 7 subsidies die elke installateur mist</h2>
+      <p>De meeste installateurs laten duizenden euros aan subsidies liggen &mdash; niet omdat ze er geen recht op hebben, maar simpelweg omdat ze de regelingen niet kennen.</p>
+      <ul>
+        <li>ISDE subsidie &mdash; tot 30% terug op warmtepompen</li>
+        <li>SDE++ &mdash; voor projecten met zonnepanelen</li>
+        <li>SLIM subsidie &mdash; voor bedrijfsontwikkeling</li>
+        <li>MIA/Vamil &mdash; fiscaal voordeel voor duurzame investeringen</li>
+        <li>Gemeentelijke regelingen die de meesten niet kennen</li>
+        <li>Aanbestedingen die nooit worden gepubliceerd op jobsites</li>
+        <li>Hoe je een aanvraag inlevert die écht wordt goedgekeurd</li>
+      </ul>
+    </div>
+    <div class="ebook-form" id="ebook-form">
+      <h3>Gratis ontvangen</h3>
+      <p>Vul uw gegevens in en wij sturen de gids direct naar uw inbox.</p>
+      <input type="text" id="ebook-naam" placeholder="Uw naam" />
+      <input type="email" id="ebook-email" placeholder="Uw e-mailadres" />
+      <button onclick="downloadEbook()">Stuur mij de gratis gids</button>
+      <div class="ebook-succes" id="ebook-succes">
+        Bedankt! De gids is onderweg naar uw inbox.<br>
+        <small style="color:#6b7280">Check ook uw spam-map.</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HULP / CHATBOT KNOP -->
+<div class="hulp-knop" id="hulp-knop">
+  <div style="position:relative;">
+    <div class="hulp-badge" id="hulp-badge">1</div>
+    <div class="hulp-icoon" onclick="toggleHulp()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+      </svg>
+    </div>
+    <div class="hulp-popup" id="hulp-popup">
+      <div class="hulp-header">
+        <div class="hulp-avatar">N</div>
+        <div>
+          <h4>Nick &mdash; SubsidieScan</h4>
+          <p>Meestal binnen 1 uur bereikbaar</p>
+        </div>
+      </div>
+      <div class="hulp-vragen" id="hulp-vragen">
+        <p>Hallo! Waarmee kan ik u helpen?</p>
+        <button class="hulp-vraag" onclick="toonAntwoord('gratis')">Hoe werkt de gratis proefperiode?</button>
+        <button class="hulp-vraag" onclick="toonAntwoord('sectoren')">Voor welke sectoren is SubsidieScan?</button>
+        <button class="hulp-vraag" onclick="toonAntwoord('opzeggen')">Kan ik op elk moment opzeggen?</button>
+        <button class="hulp-vraag" onclick="toonAntwoord('tenderned')">Hoe werkt TenderNed koppeling?</button>
+        <button class="hulp-vraag" onclick="toonAntwoord('contact')">Ik wil direct contact</button>
+      </div>
+      <div class="hulp-antwoord" id="hulp-antwoord-gratis">
+        <button class="hulp-terug" onclick="toonVragen()">&larr; Terug</button>
+        <p>De eerste <strong>14 dagen zijn volledig gratis</strong> &mdash; geen creditcard nodig, geen verplichtingen. U ontvangt dagelijks alerts en kunt alles uitproberen. Na 14 dagen kiest u zelf of u doorgaat voor €15/maand.</p>
+      </div>
+      <div class="hulp-antwoord" id="hulp-antwoord-sectoren">
+        <button class="hulp-terug" onclick="toonVragen()">&larr; Terug</button>
+        <p>SubsidieScan is speciaal gemaakt voor <strong>installateurs, energieadviseurs, isolatiebedrijven, dakdekkers en bouwbedrijven</strong>. U kiest uw sector bij aanmelding en ontvangt alleen relevante alerts.</p>
+      </div>
+      <div class="hulp-antwoord" id="hulp-antwoord-opzeggen">
+        <button class="hulp-terug" onclick="toonVragen()">&larr; Terug</button>
+        <p>Ja, u kunt <strong>altijd opzeggen</strong> &mdash; geen binding, geen gedoe. Stuur een mail naar <a href="mailto:subsidiescan.alerts@gmail.com">subsidiescan.alerts@gmail.com</a> en uw account wordt direct stopgezet.</p>
+      </div>
+      <div class="hulp-antwoord" id="hulp-antwoord-tenderned">
+        <button class="hulp-terug" onclick="toonVragen()">&larr; Terug</button>
+        <p>Wij monitoren <strong>TenderNed dagelijks</strong> op nieuwe aanbestedingen. Zodra er een aanbesteding verschijnt die bij uw sector past, krijgt u dezelfde ochtend om 7:00 een melding in uw inbox. Zo reageert u altijd als eerste.</p>
+      </div>
+      <div class="hulp-antwoord" id="hulp-antwoord-contact">
+        <button class="hulp-terug" onclick="toonVragen()">&larr; Terug</button>
+        <p>Stuur ons een mail op <a href="mailto:subsidiescan.alerts@gmail.com">subsidiescan.alerts@gmail.com</a> of bereik Nick direct via LinkedIn. We reageren meestal binnen een uur.</p>
+      </div>
+      <div class="hulp-footer">
+        <a href="#aanmelden">Gratis starten &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleHulp() {
+  var popup = document.getElementById('hulp-popup');
+  var badge = document.getElementById('hulp-badge');
+  popup.classList.toggle('open');
+  if (badge) badge.style.display = 'none';
+}
+
+function toonAntwoord(id) {
+  document.getElementById('hulp-vragen').style.display = 'none';
+  document.querySelectorAll('.hulp-antwoord').forEach(function(el) { el.classList.remove('zichtbaar'); });
+  var antw = document.getElementById('hulp-antwoord-' + id);
+  if (antw) antw.classList.add('zichtbaar');
+}
+
+function toonVragen() {
+  document.getElementById('hulp-vragen').style.display = 'block';
+  document.querySelectorAll('.hulp-antwoord').forEach(function(el) { el.classList.remove('zichtbaar'); });
+}
+
+function downloadEbook() {
+  var naam = document.getElementById('ebook-naam').value.trim();
+  var email = document.getElementById('ebook-email').value.trim();
+  if (!naam || !email) { alert('Vul uw naam en e-mailadres in.'); return; }
+  document.getElementById('ebook-succes').style.display = 'block';
+  document.getElementById('ebook-naam').disabled = true;
+  document.getElementById('ebook-email').disabled = true;
+  document.querySelector('#ebook-form button').disabled = true;
+  fetch('https://subsidiealert-webhook.onrender.com/aanmelding', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ naam: naam, email: email, pakket: 'ebook-gratis-gids', datum: new Date().toLocaleString('nl-NL') })
+  }).catch(function() {});
 }
 </script>
 
