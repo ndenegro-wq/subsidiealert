@@ -915,7 +915,8 @@
       <p>Wij nemen binnen 1 werkdag contact op om een moment in te plannen.</p>
       <input type="text" id="call-naam" placeholder="Uw naam" />
       <input type="text" id="call-bedrijf" placeholder="Bedrijfsnaam" />
-      <input type="email" id="call-email" placeholder="E-mailadres" />
+      <input type="text" id="call-tel" placeholder="Telefoonnummer" />
+      <input type="text" id="call-email" placeholder="E-mailadres" />
       <select id="call-sector">
         <option value="">Uw sector...</option>
         <option>Installatiebedrijf</option>
@@ -2386,13 +2387,16 @@ function berekenROI(value) {
 function planCall() {
   var naam = document.getElementById('call-naam') ? document.getElementById('call-naam').value.trim() : '';
   var tel = document.getElementById('call-tel') ? document.getElementById('call-tel').value.trim() : '';
+  var email = document.getElementById('call-email') ? document.getElementById('call-email').value.trim() : '';
   var sector = document.getElementById('call-sector') ? document.getElementById('call-sector').value : '';
   if (!naam || !tel) { alert('Vul uw naam en telefoonnummer in.'); return; }
   document.getElementById('call-succes').style.display = 'block';
+  var knop = document.querySelector('#call-form button');
+  if (knop) knop.disabled = true;
   fetch('https://subsidiealert-webhook.onrender.com/aanmelding', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ naam: naam, telefoon: tel, sector: sector, pakket: 'gratis-quickscan-call', datum: new Date().toLocaleString('nl-NL') })
+    body: JSON.stringify({ naam: naam, telefoon: tel, email: email, sector: sector, pakket: 'gratis-quickscan-call', datum: new Date().toLocaleString('nl-NL') })
   }).catch(function() {});
 }
 </script>
