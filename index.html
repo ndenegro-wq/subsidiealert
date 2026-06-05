@@ -197,6 +197,148 @@
       .deadline-item { flex-wrap: wrap; }
     }
 
+    /* SUBSIDIE TIJDLIJN */
+    .tijdlijn-wrap { background: #f0fdf4; padding: 64px 24px; }
+    .tijdlijn-inner { max-width: 860px; margin: 0 auto; }
+    .tijdlijn-inner h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .tijdlijn-inner .sub { text-align: center; color: #6b7280; margin-bottom: 32px; font-size: 15px; }
+    .tijdlijn-form { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 28px; }
+    .tijdlijn-rij { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    .tijdlijn-veld { flex: 1; min-width: 180px; }
+    .tijdlijn-veld label { display: block; font-size: 13px; font-weight: bold; color: #374151; margin-bottom: 5px; }
+    .tijdlijn-veld select, .tijdlijn-veld input { width: 100%; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; }
+    .tijdlijn-btn { background: #16a34a; color: white; border: none; padding: 12px 28px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 4px; }
+    .tijdlijn-resultaat { display: none; }
+    .tijdlijn-resultaat.zichtbaar { display: block; }
+    .tijdlijn-maand { margin-bottom: 24px; }
+    .tijdlijn-maand h4 { font-size: 14px; font-weight: bold; color: #166534; margin-bottom: 10px; padding: 8px 14px; background: #dcfce7; border-radius: 8px; }
+    .tijdlijn-item { display: flex; gap: 14px; align-items: flex-start; background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; }
+    .tijdlijn-item .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: #16a34a; margin-top: 5px; flex-shrink: 0; }
+    .tijdlijn-item .tl-dot.blauw { background: #2563eb; }
+    .tijdlijn-item .tl-dot.oranje { background: #ea580c; }
+    .tijdlijn-item h5 { font-size: 13px; color: #111827; margin-bottom: 3px; }
+    .tijdlijn-item p { font-size: 12px; color: #6b7280; }
+    .tijdlijn-cta { text-align: center; margin-top: 20px; font-size: 14px; color: #6b7280; }
+
+    /* MIS JE DIT - WAARSCHUWINGEN */
+    .waarschuw-wrap { background: #fff7ed; padding: 64px 24px; border-top: 3px solid #f97316; }
+    .waarschuw-inner { max-width: 800px; margin: 0 auto; }
+    .waarschuw-inner h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .waarschuw-inner .sub { text-align: center; color: #6b7280; margin-bottom: 32px; }
+    .waarschuw-lijst { display: flex; flex-direction: column; gap: 14px; }
+    .waarschuw-item { background: white; border: 1px solid #fed7aa; border-left: 5px solid #f97316; border-radius: 10px; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start; }
+    .waarschuw-item .w-icon { font-size: 24px; flex-shrink: 0; }
+    .waarschuw-item h4 { font-size: 14px; font-weight: bold; color: #9a3412; margin-bottom: 4px; }
+    .waarschuw-item p { font-size: 13px; color: #374151; line-height: 1.5; }
+    .waarschuw-item .w-tag { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: bold; margin-top: 6px; }
+    .w-urgent { background: #fee2e2; color: #991b1b; }
+    .w-normaal { background: #dcfce7; color: #166534; }
+    .w-info { background: #dbeafe; color: #1e40af; }
+    .waarschuw-cta { text-align: center; margin-top: 28px; }
+
+    /* AANBESTEDING SAMENVATTING */
+    .tender-wrap { background: white; padding: 64px 24px; }
+    .tender-inner { max-width: 860px; margin: 0 auto; }
+    .tender-inner h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .tender-inner .sub { text-align: center; color: #6b7280; margin-bottom: 32px; }
+    .tender-voorbeeld { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+    .tender-header { background: #1e40af; color: white; padding: 18px 22px; }
+    .tender-header h3 { font-size: 16px; margin-bottom: 4px; }
+    .tender-header p { font-size: 12px; color: #bfdbfe; }
+    .tender-body { padding: 20px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .tender-kader { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px; }
+    .tender-kader h4 { font-size: 12px; text-transform: uppercase; color: #6b7280; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .tender-kader p { font-size: 13px; color: #111827; line-height: 1.5; }
+    .tender-kader ul { list-style: none; padding: 0; }
+    .tender-kader ul li { font-size: 13px; color: #374151; padding: 3px 0; }
+    .tender-kader ul li::before { content: "&#10003; "; color: #16a34a; }
+    .tender-score { display: flex; align-items: center; gap: 8px; }
+    .tender-score-cirkel { width: 54px; height: 54px; border-radius: 50%; background: #16a34a; color: white; font-size: 16px; font-weight: bold; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tender-score-tekst { font-size: 13px; color: #374151; }
+    .tender-footer { padding: 14px 22px; border-top: 1px solid #e5e7eb; display: flex; gap: 10px; flex-wrap: wrap; }
+    .tender-chip { background: #f3f4f6; border-radius: 20px; padding: 5px 14px; font-size: 12px; color: #374151; }
+    @media (max-width: 600px) { .tender-body { grid-template-columns: 1fr; } }
+
+    /* TRACKER */
+    .tracker-wrap { background: #f0f9ff; padding: 64px 24px; }
+    .tracker-inner { max-width: 800px; margin: 0 auto; }
+    .tracker-inner h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .tracker-inner .sub { text-align: center; color: #6b7280; margin-bottom: 32px; }
+    .tracker-demo { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .tracker-demo-header { background: #0369a1; color: white; padding: 14px 20px; font-size: 14px; font-weight: bold; }
+    .tracker-rij { display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-bottom: 1px solid #f0f9ff; }
+    .tracker-rij:last-child { border-bottom: none; }
+    .tracker-status { width: 100px; flex-shrink: 0; }
+    .tracker-status span { display: inline-block; font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 20px; }
+    .st-ingediend { background: #dbeafe; color: #1e40af; }
+    .st-behandeling { background: #fef3c7; color: #92400e; }
+    .st-goedgekeurd { background: #dcfce7; color: #166534; }
+    .st-actie { background: #fee2e2; color: #991b1b; }
+    .tracker-info { flex: 1; }
+    .tracker-info h4 { font-size: 13px; color: #111827; margin-bottom: 2px; }
+    .tracker-info p { font-size: 12px; color: #6b7280; }
+    .tracker-deadline { font-size: 12px; color: #6b7280; white-space: nowrap; text-align: right; }
+    .tracker-deadline strong { display: block; color: #111827; font-size: 13px; }
+
+    /* WHATSAPP */
+    .whatsapp-wrap { background: #dcfce7; padding: 56px 24px; }
+    .whatsapp-inner { max-width: 760px; margin: 0 auto; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+    .whatsapp-tekst { flex: 1; min-width: 260px; }
+    .whatsapp-tekst h2 { font-size: 24px; margin-bottom: 10px; color: #14532d; }
+    .whatsapp-tekst p { color: #166534; font-size: 15px; margin-bottom: 16px; line-height: 1.6; }
+    .whatsapp-tekst ul { list-style: none; }
+    .whatsapp-tekst ul li { font-size: 14px; color: #166534; padding: 4px 0; }
+    .whatsapp-tekst ul li::before { content: "&#10003; "; font-weight: bold; }
+    .whatsapp-phone { background: #111827; border-radius: 24px; padding: 16px; width: 220px; flex-shrink: 0; }
+    .wp-screen { background: #0b141a; border-radius: 16px; padding: 14px; }
+    .wp-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #1f2d35; }
+    .wp-avatar { width: 32px; height: 32px; border-radius: 50%; background: #16a34a; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; font-weight: bold; }
+    .wp-name { color: white; font-size: 13px; font-weight: bold; }
+    .wp-online { color: #25d366; font-size: 10px; }
+    .wp-msg { background: #202c33; border-radius: 8px; padding: 10px; margin-bottom: 8px; }
+    .wp-msg p { font-size: 11px; color: #e9edef; line-height: 1.5; }
+    .wp-msg .wp-time { font-size: 10px; color: #8696a0; margin-top: 4px; text-align: right; }
+    .wp-badge { background: #25d366; color: white; font-size: 11px; font-weight: bold; border-radius: 20px; padding: 3px 12px; display: inline-block; margin-top: 10px; }
+
+    /* CONCURRENTIE RADAR */
+    .radar-wrap { background: #111827; padding: 64px 24px; color: white; }
+    .radar-inner { max-width: 860px; margin: 0 auto; }
+    .radar-inner h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .radar-inner .sub { text-align: center; color: #9ca3af; margin-bottom: 32px; }
+    .radar-demo { background: #1f2937; border-radius: 12px; overflow: hidden; }
+    .radar-demo-header { padding: 14px 20px; background: #374151; font-size: 14px; font-weight: bold; color: #f9fafb; display: flex; justify-content: space-between; align-items: center; }
+    .radar-demo-header span { font-size: 12px; color: #9ca3af; }
+    .radar-rij { display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-bottom: 1px solid #374151; flex-wrap: wrap; }
+    .radar-rij:last-child { border-bottom: none; }
+    .radar-bedrijf { font-size: 13px; font-weight: bold; color: #f9fafb; min-width: 160px; }
+    .radar-sector { font-size: 12px; color: #9ca3af; flex: 1; }
+    .radar-opdracht { font-size: 12px; color: #d1d5db; flex: 2; }
+    .radar-waarde { font-size: 13px; font-weight: bold; color: #4ade80; white-space: nowrap; }
+    .radar-cta { text-align: center; margin-top: 28px; }
+
+    /* MATCHSCORE */
+    .match-wrap { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); padding: 64px 24px; color: white; }
+    .match-inner { max-width: 800px; margin: 0 auto; }
+    .match-inner h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .match-inner .sub { text-align: center; color: #c7d2fe; margin-bottom: 32px; }
+    .match-form { background: white; border-radius: 12px; padding: 24px; }
+    .match-rij { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    .match-veld { flex: 1; min-width: 180px; }
+    .match-veld label { display: block; font-size: 13px; font-weight: bold; color: #374151; margin-bottom: 5px; }
+    .match-veld select { width: 100%; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; }
+    .match-btn { background: #4f46e5; color: white; border: none; padding: 12px 28px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 4px; }
+    .match-resultaat { display: none; margin-top: 20px; }
+    .match-resultaat.zichtbaar { display: block; }
+    .match-kaart { background: white; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; border: 1px solid #e5e7eb; }
+    .match-score-ring { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; flex-shrink: 0; color: white; }
+    .score-hoog { background: #16a34a; }
+    .score-midden { background: #f59e0b; }
+    .score-laag { background: #6b7280; }
+    .match-info { flex: 1; }
+    .match-info h4 { font-size: 13px; color: #111827; margin-bottom: 3px; font-weight: bold; }
+    .match-info p { font-size: 12px; color: #6b7280; }
+    .match-reden { font-size: 11px; color: #16a34a; font-weight: bold; }
+
     /* SUBSIDIE OVERZICHT */
     .overzicht-wrap { background: white; padding: 64px 24px; border-top: 1px solid #e5e7eb; }
     .overzicht-inner { max-width: 960px; margin: 0 auto; }
@@ -1005,6 +1147,128 @@ function voerScanUit() {
   el.classList.add('zichtbaar');
 }
 
+// SUBSIDIE TIJDLIJN
+function maakTijdlijn() {
+  var sector = document.getElementById('tl-sector').value;
+  var provincie = document.getElementById('tl-provincie').value;
+  var grootte = document.getElementById('tl-grootte').value;
+
+  var planData = {
+    installateur: [
+      { maand: 'Juni – Juli 2026', items: [
+        { kleur: '', titel: 'ISDE warmtepomp aanvraagperiode', info: 'Doorlopend open — dien in voor 31 aug voor hogere subsidie', type: '' },
+        { kleur: 'blauw', titel: 'TenderNed: warmtepompen woningcorporaties Q3', info: 'Verwacht 15–30 nieuwe aanbestedingen — zet meldingen aan', type: 'blauw' }
+      ]},
+      { maand: 'Augustus 2026', items: [
+        { kleur: 'oranje', titel: 'SDE++ najaarssronde voorbereiding', info: 'Ronde opent oktober — dossier nu gereedmaken. Budget: €8 mrd', type: 'oranje' },
+        { kleur: '', titel: 'EIA energie-investeringsaftrek Q3 deadline', info: 'Aanvragen voor 30 september — tot 45% aftrek op investering', type: '' }
+      ]},
+      { maand: 'September 2026', items: [
+        { kleur: '', titel: 'SEEH isolatiesubsidie nieuw openingstijdvak', info: 'Spouwmuur en dakisolatie — verwacht openingstijdvak september', type: '' },
+        { kleur: 'blauw', titel: 'Aanbestedingen nieuwbouwprojecten Q4', info: 'Traditioneel piek van aanbestedingen voor Q4-oplevering', type: 'blauw' }
+      ]},
+      { maand: 'Oktober – December 2026', items: [
+        { kleur: 'oranje', titel: 'SDE++ najaarsronde OPEN', info: 'Verwacht oktober — dien direct in, budget raakt snel op', type: 'oranje' },
+        { kleur: '', titel: 'ISDE jaarultimo — laatste kans 2026', info: 'Aanvragen moeten voor 31 december zijn ingediend', type: 'oranje' },
+        { kleur: '', titel: 'MIA/Vamil investeringen voor fiscaal jaar 2026', info: 'Milieu-investeringen voor 31 dec om aftrek dit jaar te benutten', type: '' }
+      ]}
+    ],
+    ict: [
+      { maand: 'April – Mei 2026', items: [
+        { kleur: '', titel: 'MIT R&D Samenwerking AI — OPEN', info: 'Open 7 apr t/m 26 mei 2026. Max subsidie: €350.000', type: '' },
+        { kleur: 'blauw', titel: 'WBSO aanvragen Q2', info: 'Doorlopend — dien kwartaalrapportage in voor loonkostenvoordeel', type: 'blauw' }
+      ]},
+      { maand: 'Juni – Augustus 2026', items: [
+        { kleur: 'oranje', titel: 'Horizon Europe ICT Call deadline', info: 'Diverse calls sluiten zomer 2026 — check EC portal', type: 'oranje' },
+        { kleur: '', titel: 'Mijn Cyberweerbare Zaak (MCZ) subsidie', info: 'Digitale beveiliging MKB — doorlopend aanvragen', type: '' }
+      ]},
+      { maand: 'September 2026', items: [
+        { kleur: '', titel: 'MIT R&D Samenwerking — open 9 jun t/m 17 sep', info: 'Laatste kans 2026 — max €350.000 per samenwerking', type: 'oranje' },
+        { kleur: 'blauw', titel: 'Aanbestedingen digitalisering gemeenten Q4', info: 'Traditioneel veel ICT-aanbestedingen voor jaarultimo budget', type: 'blauw' }
+      ]},
+      { maand: 'Oktober – December 2026', items: [
+        { kleur: '', titel: 'EFRO innovatiesubsidie aanvragen', info: 'Regionale calls — controleer uw provincie voor openingstijdvak', type: '' },
+        { kleur: '', titel: 'WBSO jaaropgave en planning 2027', info: 'Dien tijdig in voor continuïteit loonkostenvoordeel volgend jaar', type: '' }
+      ]}
+    ]
+  };
+
+  var plan = planData[sector] || planData['installateur'];
+  var html = '';
+  plan.forEach(function(blok) {
+    html += '<div class="tijdlijn-maand"><h4>' + blok.maand + '</h4>';
+    blok.items.forEach(function(item) {
+      html += '<div class="tijdlijn-item"><div class="tl-dot ' + (item.type || '') + '"></div><div><h5>' + item.titel + '</h5><p>' + item.info + '</p></div></div>';
+    });
+    html += '</div>';
+  });
+  html += '<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:14px;text-align:center;font-size:13px;color:#166534;"><strong>Dit is een voorbeeld voor ' + sector + ' in ' + provincie.replace('-',' ') + '.</strong><br>Als SubsidieScan-abonnee ontvangt u dit plan dagelijks bijgewerkt in uw inbox.</div>';
+
+  var el = document.getElementById('tijdlijn-resultaat');
+  el.innerHTML = html;
+  el.classList.add('zichtbaar');
+}
+
+// SUBSIDIE MATCHSCORE
+function berekenMatch() {
+  var sector = document.getElementById('ms-sector').value;
+  var grootte = document.getElementById('ms-grootte').value;
+  var doel = document.getElementById('ms-doel').value;
+
+  var matches = {
+    duurzaam: [
+      { naam: 'ISDE — Investeringssubsidie Duurzame Energie', score: 94, reden: 'Perfecte match: sector + investeringsdoel', max: 'tot €15.000 per installatie' },
+      { naam: 'SDE++ — Productiesubsidie hernieuwbare energie', score: 88, reden: 'Sterk match op sector en omvang', max: '€8 mrd budget' },
+      { naam: 'EIA — Energie-investeringsaftrek', score: 82, reden: 'Goede match op investeringstype', max: 'tot 45% aftrek' },
+      { naam: 'MIA/Vamil — Milieu-investeringsaftrek', score: 76, reden: 'Complementair aan EIA', max: 'tot 45% + 75% afschrijving' },
+      { naam: 'SEEH — Spouwmuur & dakisolatie', score: 71, reden: 'Relevant bij isolatieactiviteiten', max: 'tot 30%' }
+    ],
+    innovatie: [
+      { naam: 'WBSO — Loonkostenvoordeel R&D', score: 96, reden: 'Perfecte match: R&D activiteiten', max: 'doorlopend' },
+      { naam: 'MIT R&D Samenwerking 2026', score: 89, reden: 'Sterk match — open jun–sep 2026', max: 'tot €350.000' },
+      { naam: 'MIT Haalbaarheidsproject', score: 83, reden: 'Goed voor verkenning nieuwe dienst', max: 'max €20.000' },
+      { naam: 'Innovatiekrediet RVO', score: 78, reden: 'Match bij productontwikkeling', max: 'tot €10 mln' },
+      { naam: 'EIC Accelerator (EU)', score: 65, reden: 'Hoge subsidie, complexe aanvraag', max: 'tot €15 mln' }
+    ],
+    personeel: [
+      { naam: 'SLIM-regeling — Scholing MKB', score: 95, reden: 'Perfecte match: MKB + scholingsdoel', max: 'tot €24.999' },
+      { naam: 'ESF+ Arbeidsmarkt subsidie', score: 80, reden: 'Goed voor grotere scholingstrajecten', max: 'regionaal' },
+      { naam: 'WBSO — indien R&D-medewerkers', score: 68, reden: 'Combineerbaar met scholing', max: 'doorlopend' },
+      { naam: 'MKB-winstvrijstelling 2026', score: 90, reden: 'Fiscaal voordeel voor alle ondernemers', max: '12,7% vrijstelling' },
+      { naam: 'Startersaftrek (indien van toepassing)', score: 55, reden: 'Alleen voor starters', max: '€2.123' }
+    ],
+    digitaal: [
+      { naam: 'Mijn Cyberweerbare Zaak (MCZ)', score: 93, reden: 'Perfecte match: digitale beveiliging MKB', max: 'MKB' },
+      { naam: 'MIT R&D Samenwerking AI', score: 86, reden: 'Sterk match bij AI/software', max: 'tot €350.000' },
+      { naam: 'Digital Europe Programme', score: 79, reden: 'EU-subsidie digitalisering', max: 'EU' },
+      { naam: 'WBSO software ontwikkeling', score: 88, reden: 'Loonkostenvoordeel voor dev-teams', max: 'doorlopend' },
+      { naam: 'EFRO ICT-innovatie regionaal', score: 72, reden: 'Beschikbaar in meeste provincies', max: 'tot €400.000' }
+    ],
+    groei: [
+      { naam: 'BMKB — Borgstelling MKB Kredieten', score: 87, reden: 'Meer lenen voor groei', max: 'staatsgarantie' },
+      { naam: 'Groeifaciliteit risicokapitaal', score: 81, reden: 'Voor bedrijven met groeipotentie', max: 'staatsgarantie' },
+      { naam: 'MIT Haalbaarheidsproject', score: 76, reden: 'Verkenning nieuwe markten', max: 'max €20.000' },
+      { naam: 'Eurostars — internationale R&D', score: 70, reden: 'Export via innovatiesamenwerking', max: 'open 2026' },
+      { naam: 'Interreg — grensoverschrijdende samenwerking', score: 65, reden: 'Export naar buurlanden', max: 'tot 60%' }
+    ]
+  };
+
+  var lijst = matches[doel] || matches['duurzaam'];
+  var html = '<p style="font-size:13px;color:#374151;margin-bottom:14px;font-weight:bold;">Top 5 subsidies voor uw profiel:</p>';
+  lijst.forEach(function(m) {
+    var klasse = m.score >= 85 ? 'score-hoog' : (m.score >= 70 ? 'score-midden' : 'score-laag');
+    html += '<div class="match-kaart">';
+    html += '<div class="match-score-ring ' + klasse + '">' + m.score + '%</div>';
+    html += '<div class="match-info"><h4>' + m.naam + '</h4><p>' + m.reden + ' &bull; Max: ' + m.max + '</p></div>';
+    html += '</div>';
+  });
+  html += '<div style="background:#ede9fe;border-radius:8px;padding:12px;text-align:center;margin-top:10px;font-size:13px;color:#4f46e5;">Als abonnee ziet u deze matchscores <strong>dagelijks bijgewerkt</strong> op basis van nieuwe subsidies. <a href="#aanmelden" style="color:#4f46e5;font-weight:bold;">Start gratis →</a></div>';
+
+  var el = document.getElementById('match-resultaat');
+  el.innerHTML = html;
+  el.classList.add('zichtbaar');
+}
+
 function aanmelden(event) {
   if (event) event.preventDefault();
   var naam = document.getElementById('naam').value.trim();
@@ -1058,6 +1322,348 @@ function aanmelden(event) {
   });
 }
 </script>
+
+<!-- 1. PERSOONLIJK SUBSIDIEPLAN / TIJDLIJN -->
+<div class="tijdlijn-wrap" id="subsidieplan">
+  <div class="tijdlijn-inner">
+    <h2>Uw persoonlijk subsidieplan voor 12 maanden</h2>
+    <p class="sub">Vul uw profiel in en zie exact welke subsidies wanneer opengaan &mdash; op maat voor uw bedrijf. Normaal betaalt u een adviseur €500 voor dit overzicht.</p>
+    <div class="tijdlijn-form">
+      <div class="tijdlijn-rij">
+        <div class="tijdlijn-veld">
+          <label>Uw sector</label>
+          <select id="tl-sector">
+            <option value="installateur">Installatiebedrijf</option>
+            <option value="bouw">Bouwbedrijf</option>
+            <option value="landbouw">Landbouw / Agrarisch</option>
+            <option value="ict">ICT / Tech</option>
+            <option value="zorg">Zorg &amp; Welzijn</option>
+            <option value="transport">Transport &amp; Logistiek</option>
+            <option value="horeca">Horeca &amp; Retail</option>
+            <option value="innovatie">Innovatie / R&amp;D</option>
+          </select>
+        </div>
+        <div class="tijdlijn-veld">
+          <label>Provincie</label>
+          <select id="tl-provincie">
+            <option value="noord-holland">Noord-Holland</option>
+            <option value="zuid-holland">Zuid-Holland</option>
+            <option value="utrecht">Utrecht</option>
+            <option value="noord-brabant">Noord-Brabant</option>
+            <option value="gelderland">Gelderland</option>
+            <option value="overijssel">Overijssel</option>
+            <option value="overige">Overige</option>
+          </select>
+        </div>
+        <div class="tijdlijn-veld">
+          <label>Aantal medewerkers</label>
+          <select id="tl-grootte">
+            <option value="klein">1–10 medewerkers</option>
+            <option value="mkb">11–50 medewerkers</option>
+            <option value="midden">51–250 medewerkers</option>
+            <option value="groot">250+ medewerkers</option>
+          </select>
+        </div>
+      </div>
+      <button class="tijdlijn-btn" onclick="maakTijdlijn()">Maak mijn subsidieplan &rarr;</button>
+    </div>
+    <div class="tijdlijn-resultaat" id="tijdlijn-resultaat"></div>
+    <p class="tijdlijn-cta">Wilt u dit plan elke dag automatisch bijgehouden zien? <a href="#aanmelden" style="color:#16a34a;font-weight:bold;">Start gratis proefperiode &rarr;</a></p>
+  </div>
+</div>
+
+<!-- 2. MIS JE DIT — DEADLINE WAARSCHUWINGEN -->
+<div class="waarschuw-wrap" id="waarschuwingen">
+  <div class="waarschuw-inner">
+    <h2>&#9888; Mis je dit? Actieve waarschuwingen</h2>
+    <p class="sub">SubsidieScan bewaakt niet alleen nieuwe kansen — maar waarschuwt ook als u dreigt iets te missen. Dit zijn de waarschuwingen van vandaag:</p>
+    <div class="waarschuw-lijst">
+      <div class="waarschuw-item">
+        <div class="w-icon">&#128680;</div>
+        <div>
+          <h4>ISDE subsidie warmtepompen sluit over 14 dagen</h4>
+          <p>De openstellingsronde van de ISDE (Investeringssubsidie Duurzame Energie) voor warmtepompen sluit op 31 augustus 2026. Heeft u of uw klanten al een aanvraag ingediend? Gemiddeld subsidiebedrag: €3.200 per installatie.</p>
+          <span class="w-tag w-urgent">Urgent &mdash; sluit 31 aug</span>
+        </div>
+      </div>
+      <div class="waarschuw-item">
+        <div class="w-icon">&#128337;</div>
+        <div>
+          <h4>MIT R&amp;D Samenwerking: openingstijdvak sluit 17 september</h4>
+          <p>De MIT R&amp;D Samenwerking subsidie voor innovatieve MKB-bedrijven is open tot 17 september 2026. Maximale subsidie: €350.000 per samenwerkingsproject. Aanvragen duurt gemiddeld 3 weken &mdash; begin op tijd.</p>
+          <span class="w-tag w-urgent">Nog 6 weken</span>
+        </div>
+      </div>
+      <div class="waarschuw-item">
+        <div class="w-icon">&#128200;</div>
+        <div>
+          <h4>SDE++ najaarssronde opent naar verwachting oktober 2026</h4>
+          <p>De najaarssronde van SDE++ (€8 miljard budget) opent naar verwachting begin oktober. Vorig jaar was het budget binnen 3 weken vol. Zorg dat uw aanvraag klaarstaat zodra de ronde opent &mdash; SubsidieScan geeft u een seintje.</p>
+          <span class="w-tag w-normaal">Binnenkort open</span>
+        </div>
+      </div>
+      <div class="waarschuw-item">
+        <div class="w-icon">&#128203;</div>
+        <div>
+          <h4>3 nieuwe aanbestedingen in uw regio deze week</h4>
+          <p>Er zijn deze week 3 nieuwe TenderNed aanbestedingen gepubliceerd voor installatie- en bouwbedrijven in Noord-Holland, Utrecht en Zuid-Holland. Inschrijftermijn is gemiddeld 4 weken &mdash; bekijk ze nu.</p>
+          <span class="w-tag w-info">Nieuw deze week</span>
+        </div>
+      </div>
+      <div class="waarschuw-item">
+        <div class="w-icon">&#127757;</div>
+        <div>
+          <h4>Horizon Europe Call: Klimaattechnologie &mdash; deadline 12 sept</h4>
+          <p>Er is een nieuwe Europese subsidiecall open voor klimaattechnologie en duurzame innovatie. Budget: €45 miljoen. Subsidiabele projecten: 2–5 jaar, 70% subsidiabele kosten. Deadline indiening: 12 september 2026.</p>
+          <span class="w-tag w-info">Europees</span>
+        </div>
+      </div>
+    </div>
+    <div class="waarschuw-cta">
+      <p style="font-size:14px;color:#9a3412;margin-bottom:16px;">SubsidieScan abonnees ontvangen zulke waarschuwingen elke ochtend automatisch in hun inbox.</p>
+      <a href="#aanmelden" class="btn-groen" style="display:inline-block;width:auto;padding:14px 32px;">Ontvang ook deze alerts &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- 3. AANBESTEDING SAMENVATTING TOOL -->
+<div class="tender-wrap" id="tender-samenvatting">
+  <div class="tender-inner">
+    <h2>Aanbesteding samenvatting &mdash; in 30 seconden begrijpen</h2>
+    <p class="sub">TenderNed-documenten zijn vaak 80 pagina's dik. SubsidieScan zet elke aanbesteding om naar een overzichtelijke samenvatting. Zo weet u in 30 seconden of het interessant is.</p>
+    <div class="tender-voorbeeld">
+      <div class="tender-header">
+        <h3>Levering &amp; installatie 340 warmtepompen &mdash; Woningcorporatie De Alliantie</h3>
+        <p>TenderNed &bull; Gepubliceerd: 2 juni 2026 &bull; Referentie: TN-2026-44821</p>
+      </div>
+      <div class="tender-body">
+        <div class="tender-kader">
+          <h4>Wat vragen ze?</h4>
+          <p>Levering, installatie en 5 jaar onderhoud van 340 hybride warmtepompen in sociale huurwoningen in Amsterdam-Noord en Almere.</p>
+        </div>
+        <div class="tender-kader">
+          <h4>Geraamd budget</h4>
+          <p style="font-size:22px;font-weight:bold;color:#16a34a;">€ 2,1 miljoen</p>
+          <p style="font-size:12px;color:#6b7280;">excl. BTW &bull; looptijd 5 jaar</p>
+        </div>
+        <div class="tender-kader">
+          <h4>Wie mag inschrijven?</h4>
+          <ul>
+            <li>Gecertificeerd installatiebedrijf</li>
+            <li>Min. 3 jaar ervaring warmtepompen</li>
+            <li>Referentieprojecten &gt;50 units</li>
+            <li>ISO 9001 of gelijkwaardig</li>
+          </ul>
+        </div>
+        <div class="tender-kader">
+          <h4>Uw matchscore</h4>
+          <div class="tender-score">
+            <div class="tender-score-cirkel">87%</div>
+            <div class="tender-score-tekst">Sterke match op basis van sector, regio en omvang. Kans op gunning: hoog.</div>
+          </div>
+        </div>
+        <div class="tender-kader">
+          <h4>Valkuilen</h4>
+          <p>Eis: minimaal 2 referentieprojecten van vergelijkbare omvang. Plan uw inschrijving vroeg &mdash; vragen moeten voor 20 juni worden ingediend.</p>
+        </div>
+        <div class="tender-kader">
+          <h4>Deadlines</h4>
+          <p><strong>Vragen stellen:</strong> t/m 20 jun<br><strong>Inschrijven:</strong> 15 jul 12:00<br><strong>Gunning:</strong> verwacht 1 sept</p>
+        </div>
+      </div>
+      <div class="tender-footer">
+        <span class="tender-chip">Warmtepomp</span>
+        <span class="tender-chip">Amsterdam / Almere</span>
+        <span class="tender-chip">5 jaar onderhoud</span>
+        <span class="tender-chip">Woningcorporatie</span>
+        <span class="tender-chip">Meervoudig onderhands</span>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:14px;color:#6b7280;">
+      SubsidieScan maakt zo'n samenvatting voor <strong>elke relevante aanbesteding</strong> die voor u wordt gevonden.<br>
+      <a href="#aanmelden" style="color:#16a34a;font-weight:bold;">Start gratis en ontvang uw eerste samenvatting morgenochtend &rarr;</a>
+    </p>
+  </div>
+</div>
+
+<!-- 4. SUBSIDIESTATUS TRACKER -->
+<div class="tracker-wrap" id="tracker">
+  <div class="tracker-inner">
+    <h2>Subsidiestatus Tracker &mdash; nooit meer een deadline missen</h2>
+    <p class="sub">Heeft u een aanvraag lopen? SubsidieScan bewaakt automatisch alle deadlines, rapportageverplichtingen en verlengingen. Zo valt er nooit geld mis door een gemiste termijn.</p>
+    <div class="tracker-demo">
+      <div class="tracker-demo-header">Mijn lopende subsidies &amp; aanvragen <span>Voorbeeld &mdash; uw persoonlijk dashboard</span></div>
+      <div class="tracker-rij">
+        <div class="tracker-status"><span class="st-goedgekeurd">Goedgekeurd</span></div>
+        <div class="tracker-info">
+          <h4>ISDE Warmtepomp &mdash; installatie 12 woningen</h4>
+          <p>Ingediend: 14 mrt 2026 &bull; Toegekend: €38.400</p>
+        </div>
+        <div class="tracker-deadline"><strong>Afrekenen</strong>31 dec 2026</div>
+      </div>
+      <div class="tracker-rij">
+        <div class="tracker-status"><span class="st-behandeling">In behandeling</span></div>
+        <div class="tracker-info">
+          <h4>MIT Haalbaarheidsproject &mdash; nieuwe dienst</h4>
+          <p>Ingediend: 2 mei 2026 &bull; Aangevraagd: €18.500</p>
+        </div>
+        <div class="tracker-deadline"><strong>Beslissing</strong>~aug 2026</div>
+      </div>
+      <div class="tracker-rij">
+        <div class="tracker-status"><span class="st-actie">Actie vereist</span></div>
+        <div class="tracker-info">
+          <h4>SDE++ &mdash; Tussenrapportage Q2</h4>
+          <p>Rapportage verplicht voor uitbetaling volgende tranche &bull; €12.000</p>
+        </div>
+        <div class="tracker-deadline"><strong style="color:#dc2626;">Deadline</strong><strong style="color:#dc2626;">15 jul 2026</strong></div>
+      </div>
+      <div class="tracker-rij">
+        <div class="tracker-status"><span class="st-ingediend">Ingediend</span></div>
+        <div class="tracker-info">
+          <h4>SLIM-regeling &mdash; scholing 8 medewerkers</h4>
+          <p>Ingediend: 28 mei 2026 &bull; Aangevraagd: €22.000</p>
+        </div>
+        <div class="tracker-deadline"><strong>Beslissing</strong>~sep 2026</div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:14px;color:#6b7280;">
+      SubsidieScan stuurt automatisch een reminder als er actie vereist is &mdash; zodat u nooit een tranche mist.<br>
+      <a href="#aanmelden" style="color:#16a34a;font-weight:bold;">Activeer uw persoonlijke tracker &rarr;</a>
+    </p>
+  </div>
+</div>
+
+<!-- 5. WHATSAPP ALERTS -->
+<div class="whatsapp-wrap" id="whatsapp">
+  <div class="whatsapp-inner">
+    <div class="whatsapp-tekst">
+      <h2>WhatsApp alerts &mdash; nooit meer iets missen</h2>
+      <p>E-mail heeft een gemiddelde open-rate van 22%. WhatsApp: 98%. Urgente subsidies en aanbestedingen zijn te belangrijk om in een inbox te verdwijnen.</p>
+      <ul>
+        <li>Direct bericht bij nieuwe urgente kansen</li>
+        <li>Reminder 7 dagen v&oacute;&oacute;r elke deadline</li>
+        <li>Reminder 24 uur v&oacute;&oacute;r sluiting</li>
+        <li>Bevestiging wanneer uw aanvraag is ontvangen</li>
+        <li>Geen spam &mdash; alleen wat echt relevant is</li>
+      </ul>
+      <p style="font-size:13px;color:#166534;margin-top:16px;">Beschikbaar in het <strong>Pro-pakket</strong> &mdash; €20/maand</p>
+    </div>
+    <div class="whatsapp-phone">
+      <div class="wp-screen">
+        <div class="wp-header">
+          <div class="wp-avatar">S</div>
+          <div>
+            <div class="wp-name">SubsidieScan</div>
+            <div class="wp-online">&#9679; Online</div>
+          </div>
+        </div>
+        <div class="wp-msg">
+          <p>&#128680; <strong>Urgent:</strong> ISDE warmtepomp sluit over 48 uur. Heeft u uw aanvraag al ingediend? Klik hier voor directe link.</p>
+          <div class="wp-time">07:01 &#10003;&#10003;</div>
+        </div>
+        <div class="wp-msg">
+          <p>&#128203; <strong>Nieuw:</strong> 2 aanbestedingen in Noord-Holland matchen uw profiel. Totale waarde: €1,4 mln. Bekijk samenvatting &rarr;</p>
+          <div class="wp-time">07:02 &#10003;&#10003;</div>
+        </div>
+        <div class="wp-badge">&#10003; Afgeleverd</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. CONCURRENTIE RADAR -->
+<div class="radar-wrap" id="radar">
+  <div class="radar-inner">
+    <h2>&#128269; Concurrentie-radar &mdash; zie wat uw concurrenten winnen</h2>
+    <p class="sub">Wie in uw regio en sector wint welke aanbestedingen? SubsidieScan monitort gegunde opdrachten &mdash; zo ziet u precies waar kansen liggen die u anders mist.</p>
+    <div class="radar-demo">
+      <div class="radar-demo-header">
+        Gegunde aanbestedingen &mdash; installatie sector &bull; Noord-Holland
+        <span>Laatste 90 dagen</span>
+      </div>
+      <div class="radar-rij">
+        <div class="radar-bedrijf">Techneco B.V.</div>
+        <div class="radar-sector">Warmtepompen</div>
+        <div class="radar-opdracht">340 warmtepompen woningcorporatie Amsterdam-Noord</div>
+        <div class="radar-waarde">€ 2,1 mln</div>
+      </div>
+      <div class="radar-rij">
+        <div class="radar-bedrijf">SolarDak B.V.</div>
+        <div class="radar-sector">Zonnepanelen</div>
+        <div class="radar-opdracht">Zonnepanelen 12 scholen provincie Noord-Holland</div>
+        <div class="radar-waarde">€ 890.000</div>
+      </div>
+      <div class="radar-rij">
+        <div class="radar-bedrijf">IsolatieGroep</div>
+        <div class="radar-sector">Isolatie</div>
+        <div class="radar-opdracht">Spouwmuurisolatie 280 sociale huurwoningen Haarlem</div>
+        <div class="radar-waarde">€ 560.000</div>
+      </div>
+      <div class="radar-rij">
+        <div class="radar-bedrijf">ElectroBouw</div>
+        <div class="radar-sector">Elektra</div>
+        <div class="radar-opdracht">Elektrotechnische installaties nieuwbouwproject Almere</div>
+        <div class="radar-waarde">€ 1,3 mln</div>
+      </div>
+      <div class="radar-rij">
+        <div class="radar-bedrijf">LED Solutions</div>
+        <div class="radar-sector">LED verlichting</div>
+        <div class="radar-opdracht">LED retrofit 45 gemeentelijke gebouwen Utrecht</div>
+        <div class="radar-waarde">€ 420.000</div>
+      </div>
+    </div>
+    <div class="radar-cta">
+      <p style="color:#9ca3af;font-size:14px;margin-bottom:16px;">SubsidieScan monitort dagelijks alle gunningsbeslissingen op TenderNed &mdash; zo blijft u altijd een stap voor.</p>
+      <a href="#aanmelden" class="btn-groen" style="display:inline-block;width:auto;padding:14px 32px;">Activeer mijn concurrentie-radar &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- 7. SUBSIDIE MATCHSCORE -->
+<div class="match-wrap" id="matchscore">
+  <div class="match-inner">
+    <h2>&#127919; Subsidie Matchscore &mdash; wat past bij u?</h2>
+    <p class="sub">Vul uw bedrijfsprofiel in en zie direct welke subsidies het beste bij u passen &mdash; inclusief een score van 0&ndash;100% op basis van uw situatie.</p>
+    <div class="match-form">
+      <div class="match-rij">
+        <div class="match-veld">
+          <label>Sector</label>
+          <select id="ms-sector">
+            <option value="installateur">Installatiebedrijf</option>
+            <option value="bouw">Bouwbedrijf</option>
+            <option value="landbouw">Landbouw</option>
+            <option value="ict">ICT / Tech</option>
+            <option value="zorg">Zorg</option>
+            <option value="transport">Transport</option>
+            <option value="horeca">Horeca</option>
+            <option value="innovatie">Innovatie / R&amp;D</option>
+          </select>
+        </div>
+        <div class="match-veld">
+          <label>Bedrijfsgrootte</label>
+          <select id="ms-grootte">
+            <option value="micro">1&ndash;10 medewerkers</option>
+            <option value="klein">11&ndash;50 medewerkers</option>
+            <option value="mkb">51&ndash;250 medewerkers</option>
+            <option value="groot">250+ medewerkers</option>
+          </select>
+        </div>
+        <div class="match-veld">
+          <label>Investeringsdoel</label>
+          <select id="ms-doel">
+            <option value="duurzaam">Verduurzaming</option>
+            <option value="innovatie">Innovatie / R&amp;D</option>
+            <option value="personeel">Personeel / scholing</option>
+            <option value="digitaal">Digitalisering</option>
+            <option value="groei">Groei / export</option>
+          </select>
+        </div>
+      </div>
+      <button class="match-btn" onclick="berekenMatch()">Bereken mijn subsidie matchscore &rarr;</button>
+      <div class="match-resultaat" id="match-resultaat"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ALLE SUBSIDIES OVERZICHT -->
 <div class="overzicht-wrap" id="subsidies-overzicht">
