@@ -822,7 +822,7 @@
           <li>Advies over sterkste aanpak</li>
           <li>Schriftelijk rapport</li>
         </ul>
-        <a href="mailto:subsidiescan.alerts@gmail.com?subject=Quickcheck aanvraag" class="btn-groen">Quickcheck aanvragen</a>
+        <button class="btn-groen" onclick="stuurAanvraag('quickcheck')">Quickcheck aanvragen</button>
         <div class="schrijf-garantie">Geen kans? Geld terug.</div>
       </div>
 
@@ -838,7 +838,7 @@
           <li>Bijhouden tot beslissing</li>
           <li>Rapportage tussentijds</li>
         </ul>
-        <a href="mailto:subsidiescan.alerts@gmail.com?subject=Volledige aanvraag schrijfservice" class="btn-groen">Aanvraag laten schrijven</a>
+        <button class="btn-groen" onclick="stuurAanvraag('schrijfservice-compleet')">Aanvraag laten schrijven</button>
         <div class="schrijf-garantie">Geen subsidie = geen kosten (no cure no pay)</div>
       </div>
 
@@ -853,7 +853,7 @@
           <li>Maandelijks subsidiegesprek</li>
           <li>Prioriteit bij nieuwe kansen</li>
         </ul>
-        <a href="mailto:subsidiescan.alerts@gmail.com?subject=Jaarabonnement schrijfservice" class="btn-outline">Offerte aanvragen</a>
+        <button class="btn-outline" onclick="stuurAanvraag('schrijfservice-abonnement')">Offerte aanvragen</button>
       </div>
 
     </div>
@@ -889,7 +889,7 @@
         <li>Whitelabel beschikbaar</li>
         <li>Persoonlijke onboarding</li>
       </ul>
-      <a href="mailto:subsidiescan.alerts@gmail.com?subject=SubsidieScan Business aanvraag" class="btn-goud">Neem contact op</a>
+      <button class="btn-goud" onclick="stuurAanvraag('business-pakket')">Neem contact op</button>
       <p style="font-size:11px;color:#64748b;margin-top:10px;text-align:center;">Meer dan 10 klanten? Vraag maatwerk offerte aan.</p>
     </div>
   </div>
@@ -971,7 +971,7 @@
       </div>
     </div>
     <div style="text-align:center;">
-      <a href="mailto:subsidiescan.alerts@gmail.com?subject=Partner aanmelding SubsidieScan" class="btn-groen" style="display:inline-block;width:auto;padding:14px 36px;font-size:16px;">Meld u aan als partner &rarr;</a>
+      <button class="btn-groen" onclick="stuurAanvraag('partner-aanmelding')" style="width:auto;padding:14px 36px;font-size:16px;border:none;cursor:pointer;border-radius:8px;font-weight:bold;">Meld u aan als partner &rarr;</button>
       <p style="font-size:13px;color:#6b7280;margin-top:12px;">Gratis aanmelden &bull; Maandelijkse uitbetaling &bull; Geen verplichtingen</p>
     </div>
   </div>
@@ -2382,6 +2382,20 @@ function berekenROI(value) {
     var ratio = Math.round(opbrengst / abonnement);
     ratioEl.textContent = ratio + 'x';
   }
+}
+
+function stuurAanvraag(pakket) {
+  var naam = prompt('Wat is uw naam?');
+  if (!naam || !naam.trim()) return;
+  var email = prompt('Wat is uw e-mailadres?');
+  if (!email || !email.trim()) return;
+  var tel = prompt('Wat is uw telefoonnummer?');
+  fetch('https://subsidiealert-webhook.onrender.com/aanmelding', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ naam: naam.trim(), email: email.trim(), telefoon: tel || '', pakket: pakket, datum: new Date().toLocaleString('nl-NL') })
+  }).catch(function() {});
+  alert('Bedankt ' + naam.trim().split(' ')[0] + '! Nick neemt binnen 1 werkdag contact met u op.');
 }
 
 function planCall() {
