@@ -197,6 +197,29 @@
       .deadline-item { flex-wrap: wrap; }
     }
 
+    /* SUBSIDIE OVERZICHT */
+    .overzicht-wrap { background: white; padding: 64px 24px; border-top: 1px solid #e5e7eb; }
+    .overzicht-inner { max-width: 960px; margin: 0 auto; }
+    .overzicht-inner h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .overzicht-inner .sub { text-align: center; color: #6b7280; margin-bottom: 40px; font-size: 15px; }
+    .overzicht-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .overzicht-kaart { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+    .overzicht-kaart-header { padding: 14px 18px; display: flex; align-items: center; gap: 10px; }
+    .overzicht-kaart-header .ov-icon { font-size: 22px; }
+    .overzicht-kaart-header h3 { font-size: 15px; font-weight: bold; color: white; }
+    .ov-groen { background: #16a34a; }
+    .ov-blauw { background: #2563eb; }
+    .ov-paars { background: #7c3aed; }
+    .ov-oranje { background: #ea580c; }
+    .ov-teal { background: #0d9488; }
+    .ov-rood { background: #dc2626; }
+    .ov-geel { background: #b45309; }
+    .overzicht-kaart ul { list-style: none; padding: 14px 18px; margin: 0; }
+    .overzicht-kaart ul li { font-size: 13px; color: #374151; padding: 5px 0; border-bottom: 1px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center; }
+    .overzicht-kaart ul li:last-child { border-bottom: none; }
+    .ov-bedrag { font-size: 11px; font-weight: bold; color: #16a34a; white-space: nowrap; margin-left: 8px; }
+    .ov-bedrag.blauw { color: #2563eb; }
+
     /* VERGELIJKINGSTABEL */
     .vergelijk-wrap { background: #f9fafb; padding: 64px 24px; }
     .vergelijk-inner { max-width: 860px; margin: 0 auto; }
@@ -270,7 +293,7 @@
 <!-- HERO -->
 <div class="hero">
   <h1>Mis nooit meer een <span>subsidie</span> of aanbesteding</h1>
-  <p>Elke ochtend een overzicht in uw inbox — speciaal voor installateurs, energieadviseurs en isolatiebedrijven.</p>
+  <p>Elke ochtend een persoonlijk overzicht in uw inbox &mdash; voor installateurs, bouw, landbouw, ICT, zorg, transport en meer.</p>
   <div class="hero-btns">
     <a href="https://buy.stripe.com/cNiaEXfhc9vL94jdXF87K03" class="btn-primary">Start nu &euro;20/mnd</a>
     <a href="#voorbeeld" class="btn-secondary">Bekijk voorbeeld</a>
@@ -280,7 +303,7 @@
 
 <!-- SOCIAL PROOF -->
 <div class="proof">
-  <p>Dagelijks monitoren wij <strong>RVO subsidies</strong>, <strong>TenderNed aanbestedingen</strong> en <strong>gemeentelijke regelingen</strong> voor de duurzaamheidssector</p>
+  <p>Dagelijks monitoren wij <strong>RVO subsidies</strong>, <strong>TenderNed aanbestedingen</strong>, <strong>EU-fondsen</strong> en <strong>provinciale regelingen</strong> &mdash; voor <strong>14+ sectoren</strong></p>
 </div>
 
 <!-- BRONNEN BALK -->
@@ -292,14 +315,17 @@
       <div class="bron-badge">TenderNed</div>
       <div class="bron-badge">Rijksoverheid.nl</div>
       <div class="bron-badge">Gemeenteloket</div>
-      <div class="bron-badge">Europese subsidiedatabank</div>
+      <div class="bron-badge">Horizon Europe</div>
+      <div class="bron-badge">EFRO / Interreg</div>
+      <div class="bron-badge">Provincies (12x)</div>
+      <div class="bron-badge">EU Commissie</div>
     </div>
   </div>
 </div>
 
 <!-- LIVE TELLER BALK -->
 <div class="teller-balk">
-  📋 Vandaag staan er <strong id="teller-aantal">47</strong> nieuwe aanbestedingen open voor installateurs en bouwbedrijven &nbsp;·&nbsp; <strong id="teller-subsidies">12</strong> subsidies lopen binnenkort af
+  📋 Vandaag staan er <strong id="teller-aantal">47</strong> nieuwe aanbestedingen open &nbsp;·&nbsp; <strong id="teller-subsidies">12</strong> subsidies lopen binnenkort af &nbsp;·&nbsp; <strong id="teller-sectoren">14</strong> sectoren gemonitord
 </div>
 
 <!-- SECTOR KIEZER -->
@@ -314,6 +340,13 @@
     <button class="sector-btn" onclick="toonSector('bouw')">Bouwbedrijf</button>
     <button class="sector-btn" onclick="toonSector('led')">LED Verlichting</button>
     <button class="sector-btn" onclick="toonSector('adviseur')">Energieadviseur</button>
+    <button class="sector-btn" onclick="toonSector('landbouw')">Landbouw / Agrarisch</button>
+    <button class="sector-btn" onclick="toonSector('transport')">Transport / Logistiek</button>
+    <button class="sector-btn" onclick="toonSector('ict')">ICT / Tech</button>
+    <button class="sector-btn" onclick="toonSector('zorg')">Zorg &amp; Welzijn</button>
+    <button class="sector-btn" onclick="toonSector('horeca')">Horeca &amp; Retail</button>
+    <button class="sector-btn" onclick="toonSector('innovatie')">Innovatie / R&amp;D</button>
+    <button class="sector-btn" onclick="toonSector('europees')">Europese subsidies</button>
   </div>
   <div class="sector-resultaat" id="sector-resultaat">
     <h3 id="sector-titel">Relevante kansen voor u:</h3>
@@ -463,11 +496,23 @@
         <div class="calc-veld">
           <label>Type investering</label>
           <select id="calc-type">
-            <option value="zonnepanelen">Zonnepanelen (SDE++/ISDE)</option>
-            <option value="warmtepomp">Warmtepomp (ISDE)</option>
-            <option value="isolatie">Isolatie (SEEH/ISDE)</option>
-            <option value="led">LED Verlichting (EIA)</option>
-            <option value="laadpaal">Laadpalen (MIA/Vamil)</option>
+            <optgroup label="Verduurzaming">
+              <option value="zonnepanelen">Zonnepanelen (SDE++/ISDE)</option>
+              <option value="warmtepomp">Warmtepomp (ISDE)</option>
+              <option value="isolatie">Isolatie (SEEH/ISDE)</option>
+              <option value="led">LED Verlichting (EIA)</option>
+              <option value="laadpaal">Laadpalen (MIA/Vamil)</option>
+              <option value="elektrischrijden">Elektrisch wagenpark (SEBA)</option>
+            </optgroup>
+            <optgroup label="Innovatie &amp; Digitalisering">
+              <option value="rd_innovatie">R&amp;D / Productontwikkeling (WBSO/MIT)</option>
+              <option value="robotisering">Robotisering / Automatisering (MIA)</option>
+              <option value="digitalisering">Digitalisering / Cybersecurity</option>
+            </optgroup>
+            <optgroup label="Personeel &amp; Overig">
+              <option value="scholing">Scholing personeel (SLIM-regeling)</option>
+              <option value="milieu">Milieu-investering (MIA/Vamil)</option>
+            </optgroup>
           </select>
         </div>
         <div class="calc-veld">
@@ -578,14 +623,26 @@
       <label>Uw sector</label>
       <select id="scan-sector">
         <option value="">Kies uw sector...</option>
-        <option value="installateur">Installatiebedrijf</option>
-        <option value="zonnepanelen">Zonnepanelen installateur</option>
-        <option value="warmtepomp">Warmtepomp installateur</option>
-        <option value="isolatie">Isolatiebedrijf</option>
-        <option value="bouw">Bouwbedrijf / aannemer</option>
-        <option value="led">LED verlichting</option>
-        <option value="adviseur">Energieadviseur / EPA</option>
-        <option value="overig">Anders</option>
+        <optgroup label="Duurzaamheid &amp; Energie">
+          <option value="installateur">Installatiebedrijf</option>
+          <option value="zonnepanelen">Zonnepanelen installateur</option>
+          <option value="warmtepomp">Warmtepomp installateur</option>
+          <option value="isolatie">Isolatiebedrijf</option>
+          <option value="led">LED verlichting</option>
+          <option value="adviseur">Energieadviseur / EPA</option>
+        </optgroup>
+        <optgroup label="Bouw &amp; Infra">
+          <option value="bouw">Bouwbedrijf / aannemer</option>
+          <option value="transport">Transport &amp; Logistiek</option>
+        </optgroup>
+        <optgroup label="Overige sectoren">
+          <option value="landbouw">Landbouw / Agrarisch</option>
+          <option value="ict">ICT / Tech</option>
+          <option value="zorg">Zorg &amp; Welzijn</option>
+          <option value="horeca">Horeca &amp; Retail</option>
+          <option value="innovatie">Innovatie / R&amp;D</option>
+          <option value="europees">Europese subsidies</option>
+        </optgroup>
       </select>
       <label>Uw regio</label>
       <select id="scan-regio">
@@ -665,7 +722,19 @@
   </div>
   <div class="faq-item">
     <h3>Voor wie is SubsidieScan bedoeld?</h3>
-    <p>Voor installateurs, energieadviseurs, isolatiebedrijven, duurzaamheidsadviseurs en andere MKB-bedrijven die actief zijn in de energietransitie.</p>
+    <p>Voor elk Nederlands bedrijf dat subsidies of aanbestedingen wil vinden — van installateurs en bouwbedrijven tot ICT-bedrijven, zorginstellingen, landbouwers, horecaondernemers en transport- en logistiekbedrijven. Wij monitoren 14+ sectoren.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Monitort SubsidieScan ook Europese subsidies?</h3>
+    <p>Ja. Wij monitoren ook Horizon Europe, EFRO, Interreg, Digital Europe en andere EU-programma's. In het Pro-pakket ontvangt u ook meldingen over relevante Europese subsidiecalls voor uw sector.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Kan ik SubsidieScan gebruiken als ik geen duurzaamheidsbedrijf ben?</h3>
+    <p>Zeker. SubsidieScan monitort ook WBSO (R&amp;D), SLIM-regeling (scholing), MIT (innovatie), BMKB (financiering), MIA/Vamil en tientallen andere regelingen die voor alle sectoren beschikbaar zijn — van horeca tot zorg tot transport.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Wat is het verschil met een subsidieadviseur?</h3>
+    <p>Een adviseur kost vaak €150–250 per uur en werkt op aanvraag. SubsidieScan signaleert automatisch &eacute;lke dag nieuwe kansen voor maar €15–20 per maand. U beslist zelf wanneer u een adviseur inschakelt — maar u mist nooit meer een deadline of openingstijdvak.</p>
   </div>
 </div>
 
@@ -686,6 +755,7 @@
   var subsidies = 8 + Math.floor(Math.random() * 8);
   document.getElementById('teller-aantal').textContent = basis;
   document.getElementById('teller-subsidies').textContent = subsidies;
+  document.getElementById('teller-sectoren').textContent = 14;
 })();
 
 // SECTOR KIEZER
@@ -752,6 +822,97 @@ var sectorData = {
       "Aanbesteding: EPA-adviezen woningcorporatie 1.200 woningen — TenderNed",
       "Subsidie verduurzamingsadvies MKB via BMKB-Groen regeling — RVO"
     ]
+  },
+  landbouw: {
+    titel: "Kansen voor landbouw &amp; agrarische bedrijven:",
+    items: [
+      "GLB-subsidie jonge landbouwers — eenmalig tot €80.000 bij bedrijfsovername — RVO",
+      "ABLP subsidie biologische landbouw — omschakeling naar biologisch — RVO",
+      "EIP Digitalisering &amp; Robotisering agrarische sector — doorlopend — RVO",
+      "Agrarisch Natuurbeheer (SNL) — vergoeding voor natuurvriendelijk bodembeheer — RVO",
+      "Tegemoetkoming brede weersverzekering — premiekorting via rijksoverheid — RVO",
+      "MIA/Vamil voor milieuvriendelijke agrarische investeringen — doorlopend — RVO",
+      "Aanbesteding: groenonderhoud gemeentegrond regio Gelderland — TenderNed",
+      "Provinciaal: Investeringen Duurzame Landbouw Overijssel — open mrt–apr 2026"
+    ]
+  },
+  transport: {
+    titel: "Kansen voor transport &amp; logistiek:",
+    items: [
+      "SEBA subsidie elektrische bedrijfsauto's en bestelauto's — RVO",
+      "MIA/Vamil aftrek voor elektrische vrachtwagens en laadinfra — doorlopend — RVO",
+      "Aanbesteding: leerlingenvervoer gemeente Amsterdam 2026–2029 — TenderNed",
+      "SSEB subsidie emissieloos bouwmaterieel (ook voor transport) — open mrt 2026 — RVO",
+      "Interreg subsidie grensoverschrijdende logistieke samenwerking — EU",
+      "COVER subsidie duurzaam woon-werkverkeer MKB-medewerkers — RVO",
+      "Aanbesteding: OV-contracten en busvervoer provincie Noord-Holland — TenderNed",
+      "EIA aftrek energiezuinige koelinstallaties transport — deadline 31 jul — RVO"
+    ]
+  },
+  ict: {
+    titel: "Kansen voor ICT &amp; techbedrijven:",
+    items: [
+      "WBSO loonkostenvoordeel voor softwareontwikkeling en R&amp;D — doorlopend — RVO",
+      "MIT R&amp;D Samenwerking AI — open 7 apr t/m 26 mei 2026 — RVO",
+      "Mijn Cyberweerbare Zaak (MCZ) — subsidie digitale beveiliging MKB — RVO",
+      "Horizon Europe ICT-calls — tot €2,5 mln per project — EU Commissie",
+      "Digital Europe Programme subsidies — EU digitalisering — EC",
+      "EIC Accelerator — tot €15 mln voor innovatieve techbedrijven — EU",
+      "Aanbesteding: digitalisering gemeentelijke dienstverlening Rotterdam — TenderNed",
+      "EFRO Noord-Holland: ICT-innovatieprojecten — tot €400.000 per mkb'er"
+    ]
+  },
+  zorg: {
+    titel: "Kansen voor zorg &amp; welzijn:",
+    items: [
+      "Aanbesteding: thuiszorg en begeleiding WMO gemeente Utrecht 2026 — TenderNed",
+      "SLIM-regeling scholing zorgpersoneel — tot €500.000 voor grote zorginstellingen — RVO",
+      "Aanbesteding: schoonmaak zorginstelling regio Noord-Holland — TenderNed",
+      "WBSO voor zorginnovatieprojecten — loonkostenvoordeel R&amp;D — RVO",
+      "Aanbesteding: ICT-systemen ziekenhuis / huisartsenpraktijk — TenderNed",
+      "MIT haalbaarheidsproject: nieuwe zorgdiensten of zorgtech — max €20.000 — RVO",
+      "EFRO subsidie voor zorginnovatie in de regio — tot €750.000 per project",
+      "Aanbesteding: catering en voeding zorginstelling 2026–2030 — TenderNed"
+    ]
+  },
+  horeca: {
+    titel: "Kansen voor horeca &amp; retail:",
+    items: [
+      "EIA aftrek voor energiezuinige keukenapparatuur horeca — RVO",
+      "MIA/Vamil voor duurzame inrichting horecapanden — doorlopend — RVO",
+      "SLIM-regeling scholing horecapersoneel — tot €24.999 voor mkb — RVO",
+      "Aanbesteding: cateringscontract overheidsgebouwen regio Den Haag — TenderNed",
+      "Gemeentelijke subsidies winkelstraat en centrumversterking — lokale gemeente",
+      "SVOM subsidie maatschappelijk verantwoord ondernemen MKB — RVO",
+      "MIT haalbaarheidsproject nieuwe retail- of horecaformule — max €20.000 — RVO",
+      "Provinciale subsidie evenementenorganisatie en toerisme — diverse provincies"
+    ]
+  },
+  innovatie: {
+    titel: "Kansen voor innovatie &amp; R&amp;D bedrijven:",
+    items: [
+      "WBSO — loonkostenvoordeel voor alle R&amp;D-medewerkers — doorlopend — RVO",
+      "MIT R&amp;D Samenwerking — open 9 jun t/m 17 sep 2026 — RVO",
+      "Innovatiekrediet — financiering veelbelovende productinnovaties — RVO",
+      "EIC Accelerator — tot €2,5 mln grant + €15 mln equity — EU Commissie",
+      "Horizon Europe projectsubsidies — open calls per thema — EC",
+      "EFRO Innovatie — regionaal: tot €750.000 per samenwerkingsproject",
+      "Seed Capital regeling voor innovatieve startups — RVO",
+      "Eurostars — internationale R&amp;D samenwerking mkb — open calls 2026"
+    ]
+  },
+  europees: {
+    titel: "Europese subsidiekansen voor Nederlandse bedrijven:",
+    items: [
+      "Horizon Europe — onderzoek &amp; innovatie tot €2,5 mln per project — EC",
+      "EFRO Regionaal — innovatie en verduurzaming, max €750.000 per mkb'er",
+      "Interreg A — grensoverschrijdende samenwerking, tot 60% subsidie — EU",
+      "Interreg B North Sea Region — klimaat, innovatie, transitie — EU",
+      "Digital Europe Programme — digitalisering en AI voor bedrijven — EC",
+      "EIC Accelerator — disruptieve innovaties, tot €15 mln — EU Commissie",
+      "LIFE subsidie milieu &amp; klimaat — open calls 2026 — EC",
+      "ESF+ arbeidsmarkt &amp; scholing — regionaal beschikbaar — EU/provincies"
+    ]
   }
 };
 
@@ -777,19 +938,31 @@ function berekenSubsidie() {
   if (bedrag < 1000) { alert('Vul een investering in van minimaal €1.000'); return; }
 
   var percentages = {
-    zonnepanelen: { mkb: 0.27, groot: 0.22, instelling: 0.30 },
-    warmtepomp:   { mkb: 0.35, groot: 0.28, instelling: 0.40 },
-    isolatie:     { mkb: 0.30, groot: 0.25, instelling: 0.35 },
-    led:          { mkb: 0.28, groot: 0.22, instelling: 0.28 },
-    laadpaal:     { mkb: 0.32, groot: 0.25, instelling: 0.32 }
+    zonnepanelen:  { mkb: 0.27, groot: 0.22, instelling: 0.30 },
+    warmtepomp:    { mkb: 0.35, groot: 0.28, instelling: 0.40 },
+    isolatie:      { mkb: 0.30, groot: 0.25, instelling: 0.35 },
+    led:           { mkb: 0.28, groot: 0.22, instelling: 0.28 },
+    laadpaal:      { mkb: 0.32, groot: 0.25, instelling: 0.32 },
+    elektrischrijden: { mkb: 0.28, groot: 0.20, instelling: 0.28 },
+    robotisering:  { mkb: 0.40, groot: 0.35, instelling: 0.45 },
+    rd_innovatie:  { mkb: 0.32, groot: 0.25, instelling: 0.32 },
+    scholing:      { mkb: 0.60, groot: 0.50, instelling: 0.60 },
+    digitalisering:{ mkb: 0.35, groot: 0.28, instelling: 0.35 },
+    milieu:        { mkb: 0.45, groot: 0.36, instelling: 0.45 }
   };
 
   var regelingen = {
-    zonnepanelen: ['SDE++ (productiesubsidie)', 'ISDE (investeringssubsidie)'],
-    warmtepomp:   ['ISDE (investeringssubsidie)', 'Stimuleringsregeling warmtepomp'],
-    isolatie:     ['SEEH (spouwmuur/dak)', 'ISDE gebouwisolatie'],
-    led:          ['EIA (energie-investeringsaftrek)', 'MIA/Vamil'],
-    laadpaal:     ['MIA/Vamil', 'SEBA (subsidie elektrisch rijden)']
+    zonnepanelen:  ['SDE++ (productiesubsidie)', 'ISDE (investeringssubsidie)'],
+    warmtepomp:    ['ISDE (investeringssubsidie)', 'Stimuleringsregeling warmtepomp'],
+    isolatie:      ['SEEH (spouwmuur/dak)', 'ISDE gebouwisolatie'],
+    led:           ['EIA (energie-investeringsaftrek)', 'MIA/Vamil'],
+    laadpaal:      ['MIA/Vamil', 'SEBA (subsidie elektrisch rijden)'],
+    elektrischrijden: ['SEBA (subsidie elektrisch rijden)', 'MIA/Vamil elektrisch wagenpark'],
+    robotisering:  ['MIA/Vamil (milieu-investeringsaftrek)', 'EIP Digitalisering agrarisch', 'MIT Innovatiestimulering'],
+    rd_innovatie:  ['WBSO (loonkostenvoordeel R&D)', 'MIT R&D Samenwerking', 'Innovatiekrediet RVO'],
+    scholing:      ['SLIM-regeling (scholing MKB)', 'ESF+ subsidie arbeidsmarkt'],
+    digitalisering:['Mijn Cyberweerbare Zaak (MCZ)', 'Digital Europe subsidie', 'MIT Digitalisering'],
+    milieu:        ['MIA (milieu-investeringsaftrek)', 'Vamil (willekeurige afschrijving)', 'SVOM (verantwoord ondernemen)']
   };
 
   var perc = percentages[type][bedrijf];
@@ -885,6 +1058,125 @@ function aanmelden(event) {
   });
 }
 </script>
+
+<!-- ALLE SUBSIDIES OVERZICHT -->
+<div class="overzicht-wrap" id="subsidies-overzicht">
+  <div class="overzicht-inner">
+    <h2>Alle subsidies &amp; regelingen die wij monitoren</h2>
+    <p class="sub">Van verduurzaming tot innovatie — voor elk type bedrijf zijn er kansen. SubsidieScan houdt ze allemaal bij.</p>
+    <div class="overzicht-grid">
+
+      <div class="overzicht-kaart">
+        <div class="overzicht-kaart-header ov-groen"><span class="ov-icon">&#9728;</span><h3>Energie &amp; Verduurzaming</h3></div>
+        <ul>
+          <li>ISDE &mdash; investeringssubsidie duurzame energie<span class="ov-bedrag">tot 40%</span></li>
+          <li>SDE++ &mdash; productiesubsidie hernieuwbare energie<span class="ov-bedrag">€8 mrd</span></li>
+          <li>SEEH &mdash; spouwmuur &amp; dakisolatie<span class="ov-bedrag">tot 30%</span></li>
+          <li>EIA &mdash; energie-investeringsaftrek<span class="ov-bedrag">€460 mln</span></li>
+          <li>MIA &mdash; milieu-investeringsaftrek<span class="ov-bedrag">tot 45%</span></li>
+          <li>Vamil &mdash; willekeurige afschrijving milieu<span class="ov-bedrag">75%</span></li>
+          <li>SEBA &mdash; subsidie elektrische bedrijfsauto's<span class="ov-bedrag">tot 28%</span></li>
+        </ul>
+      </div>
+
+      <div class="overzicht-kaart">
+        <div class="overzicht-kaart-header ov-blauw"><span class="ov-icon">&#128640;</span><h3>Innovatie &amp; R&amp;D</h3></div>
+        <ul>
+          <li>WBSO &mdash; loonkostenvoordeel R&amp;D<span class="ov-bedrag">doorlopend</span></li>
+          <li>MIT R&amp;D Samenwerking<span class="ov-bedrag">open jun–sep</span></li>
+          <li>MIT Haalbaarheidsproject<span class="ov-bedrag">max €20.000</span></li>
+          <li>Innovatiekrediet RVO<span class="ov-bedrag">tot €10 mln</span></li>
+          <li>Seed Capital startups<span class="ov-bedrag">RVO</span></li>
+          <li>EIC Accelerator (EU)<span class="ov-bedrag">tot €15 mln</span></li>
+          <li>Eurostars internationaal R&amp;D<span class="ov-bedrag">open 2026</span></li>
+        </ul>
+      </div>
+
+      <div class="overzicht-kaart">
+        <div class="overzicht-kaart-header ov-paars"><span class="ov-icon">&#127760;</span><h3>Europese subsidies</h3></div>
+        <ul>
+          <li>Horizon Europe onderzoek<span class="ov-bedrag">tot €2,5 mln</span></li>
+          <li>EFRO Regionaal Fonds<span class="ov-bedrag">tot €750.000</span></li>
+          <li>Interreg A grensregio's<span class="ov-bedrag">tot 60%</span></li>
+          <li>Digital Europe Programme<span class="ov-bedrag">EU</span></li>
+          <li>LIFE milieu &amp; klimaat<span class="ov-bedrag">open 2026</span></li>
+          <li>ESF+ arbeidsmarkt<span class="ov-bedrag">regionaal</span></li>
+          <li>North Sea Region (Interreg B)<span class="ov-bedrag">EU</span></li>
+        </ul>
+      </div>
+
+      <div class="overzicht-kaart">
+        <div class="overzicht-kaart-header ov-oranje"><span class="ov-icon">&#127807;</span><h3>Landbouw &amp; Agrarisch</h3></div>
+        <ul>
+          <li>GLB jonge landbouwers<span class="ov-bedrag">max €80.000</span></li>
+          <li>ABLP biologische landbouw<span class="ov-bedrag">RVO</span></li>
+          <li>Agrarisch Natuurbeheer (SNL)<span class="ov-bedrag">jaarlijks</span></li>
+          <li>EIP Digitalisering agrarisch<span class="ov-bedrag">RVO</span></li>
+          <li>Brede weersverzekering<span class="ov-bedrag">premiekorting</span></li>
+          <li>Inv. Duurzame Landbouw Overijssel<span class="ov-bedrag">mrt–apr</span></li>
+          <li>MIA/Vamil agrarisch<span class="ov-bedrag">doorlopend</span></li>
+        </ul>
+      </div>
+
+      <div class="overzicht-kaart">
+        <div class="overzicht-kaart-header ov-teal"><span class="ov-icon">&#128202;</span><h3>ICT &amp; Digitalisering</h3></div>
+        <ul>
+          <li>WBSO software &amp; R&amp;D<span class="ov-bedrag">doorlopend</span></li>
+          <li>Mijn Cyberweerbare Zaak (MCZ)<span class="ov-bedrag">MKB</span></li>
+          <li>MIT R&amp;D Samenwerking AI<span class="ov-bedrag">apr–mei</span></li>
+          <li>Digital Europe Programme<span class="ov-bedrag">EC</span></li>
+          <li>EFRO ICT-innovatie<span class="ov-bedrag">tot €400.000</span></li>
+          <li>Horizon Europe ICT-calls<span class="ov-bedrag">tot €2,5 mln</span></li>
+          <li>Groeifaciliteit risicokapitaal<span class="ov-bedrag">staatsgarantie</span></li>
+        </ul>
+      </div>
+
+      <div class="overzicht-kaart">
+        <div class="overzicht-kaart-header ov-rood"><span class="ov-icon">&#10084;</span><h3>Zorg &amp; Welzijn</h3></div>
+        <ul>
+          <li>SLIM-regeling scholing zorg<span class="ov-bedrag">tot €500.000</span></li>
+          <li>WBSO zorginnovaties<span class="ov-bedrag">doorlopend</span></li>
+          <li>MIT haalbaarheidsproject zorgtech<span class="ov-bedrag">max €20.000</span></li>
+          <li>EFRO zorginnovatie regio<span class="ov-bedrag">tot €750.000</span></li>
+          <li>Aanbestedingen WMO gemeenten<span class="ov-bedrag blauw">TenderNed</span></li>
+          <li>ESF+ arbeidsmarkt zorg<span class="ov-bedrag">EU/provincies</span></li>
+          <li>Subsidie maatschappelijk vastgoed<span class="ov-bedrag">lokaal</span></li>
+        </ul>
+      </div>
+
+      <div class="overzicht-kaart">
+        <div class="overzicht-kaart-header ov-geel"><span class="ov-icon">&#128666;</span><h3>Transport &amp; Logistiek</h3></div>
+        <ul>
+          <li>SEBA elektrische bedrijfsauto's<span class="ov-bedrag">RVO</span></li>
+          <li>SSEB emissieloos bouwmaterieel<span class="ov-bedrag">mrt 2026</span></li>
+          <li>COVER duurzaam reisgedrag<span class="ov-bedrag">jan–okt</span></li>
+          <li>MIA/Vamil elektrisch wagenpark<span class="ov-bedrag">doorlopend</span></li>
+          <li>EIA koelinstallaties transport<span class="ov-bedrag">31 jul</span></li>
+          <li>Interreg logistieke samenwerking<span class="ov-bedrag">EU</span></li>
+          <li>OV- en busaanbestedingen<span class="ov-bedrag blauw">TenderNed</span></li>
+        </ul>
+      </div>
+
+      <div class="overzicht-kaart">
+        <div class="overzicht-kaart-header" style="background:#374151"><span class="ov-icon">&#127869;</span><h3 style="color:white">Horeca, Retail &amp; MKB</h3></div>
+        <ul>
+          <li>SLIM-regeling scholing personeel<span class="ov-bedrag">tot €24.999</span></li>
+          <li>EIA energiezuinige apparatuur<span class="ov-bedrag">RVO</span></li>
+          <li>MIA/Vamil duurzame inrichting<span class="ov-bedrag">doorlopend</span></li>
+          <li>MIT haalbaarheidsproject<span class="ov-bedrag">max €20.000</span></li>
+          <li>BMKB borgstelling financiering<span class="ov-bedrag">meer lenen</span></li>
+          <li>Centrumversterking gemeente<span class="ov-bedrag">lokaal</span></li>
+          <li>MKB-winstvrijstelling 2026<span class="ov-bedrag">12,7%</span></li>
+        </ul>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:32px;font-size:14px;color:#6b7280;">
+      SubsidieScan monitort al deze regelingen dagelijks &mdash; plus honderden aanbestedingen via TenderNed.<br>
+      <a href="#aanmelden" style="color:#16a34a;font-weight:bold;">Ontvang elke ochtend een persoonlijk overzicht &rarr;</a>
+    </p>
+  </div>
+</div>
 
 <!-- VERGELIJKINGSTABEL -->
 <div class="vergelijk-wrap" id="vergelijk">
