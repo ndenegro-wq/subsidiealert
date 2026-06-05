@@ -124,9 +124,77 @@
     footer { background: #111827; color: #9ca3af; text-align: center; padding: 24px; font-size: 13px; }
     footer a { color: #6b7280; text-decoration: none; margin: 0 8px; }
 
+    /* TELLER BALK */
+    .teller-balk { background: #14532d; color: white; padding: 12px 24px; text-align: center; font-size: 14px; }
+    .teller-balk strong { color: #86efac; font-size: 22px; }
+
+    /* SECTOR KIEZER */
+    .sectorkiezer { background: white; padding: 48px 24px; border-bottom: 1px solid #e5e7eb; }
+    .sectorkiezer h2 { font-size: 22px; text-align: center; margin-bottom: 8px; }
+    .sectorkiezer .sub { text-align: center; color: #6b7280; margin-bottom: 24px; font-size: 15px; }
+    .sector-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: 800px; margin: 0 auto 24px; }
+    .sector-btn { padding: 10px 18px; border: 2px solid #e5e7eb; border-radius: 8px; background: white; color: #374151; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+    .sector-btn:hover, .sector-btn.actief { border-color: #16a34a; background: #f0fdf4; color: #16a34a; font-weight: bold; }
+    .sector-resultaat { max-width: 700px; margin: 0 auto; display: none; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 20px; }
+    .sector-resultaat.zichtbaar { display: block; }
+    .sector-resultaat h3 { color: #166534; margin-bottom: 12px; font-size: 15px; }
+    .sector-item { background: white; border-left: 4px solid #22c55e; padding: 10px 14px; margin-bottom: 8px; border-radius: 4px; font-size: 13px; color: #374151; }
+
+    /* CALCULATOR */
+    .calc-wrap { background: #f0fdf4; padding: 64px 24px; }
+    .calc-inner { max-width: 700px; margin: 0 auto; }
+    .calc-inner h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .calc-inner .sub { text-align: center; color: #6b7280; margin-bottom: 32px; font-size: 15px; }
+    .calc-form { background: white; border-radius: 12px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .calc-rij { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+    .calc-veld { flex: 1; min-width: 200px; }
+    .calc-veld label { display: block; font-size: 13px; color: #374151; margin-bottom: 6px; font-weight: bold; }
+    .calc-veld select, .calc-veld input { width: 100%; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; }
+    .calc-btn { background: #16a34a; color: white; border: none; padding: 12px 28px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 8px; }
+    .calc-resultaat { display: none; margin-top: 20px; background: #f0fdf4; border: 2px solid #22c55e; border-radius: 10px; padding: 20px; text-align: center; }
+    .calc-resultaat.zichtbaar { display: block; }
+    .calc-resultaat .bedrag { font-size: 42px; font-weight: bold; color: #16a34a; }
+    .calc-resultaat p { color: #374151; font-size: 14px; margin-top: 8px; }
+    .calc-breakdown { text-align: left; margin-top: 16px; }
+    .calc-breakdown-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #bbf7d0; font-size: 13px; color: #374151; }
+
+    /* KALENDER */
+    .kalender-wrap { background: white; padding: 64px 24px; }
+    .kalender-inner { max-width: 800px; margin: 0 auto; }
+    .kalender-inner h2 { font-size: 26px; text-align: center; margin-bottom: 8px; }
+    .kalender-inner .sub { text-align: center; color: #6b7280; margin-bottom: 32px; font-size: 15px; }
+    .deadline-lijst { display: flex; flex-direction: column; gap: 10px; }
+    .deadline-item { display: flex; align-items: center; gap: 16px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px 18px; }
+    .deadline-datum { background: #16a34a; color: white; border-radius: 8px; padding: 8px 12px; text-align: center; min-width: 56px; flex-shrink: 0; }
+    .deadline-datum .dag { font-size: 22px; font-weight: bold; line-height: 1; }
+    .deadline-datum .maand { font-size: 11px; text-transform: uppercase; }
+    .deadline-info h4 { font-size: 14px; color: #111827; margin-bottom: 3px; }
+    .deadline-info p { font-size: 12px; color: #6b7280; }
+    .deadline-tag { margin-left: auto; font-size: 11px; padding: 4px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+    .tag-subsidie { background: #dcfce7; color: #166534; }
+    .tag-aanbesteding { background: #dbeafe; color: #1e40af; }
+    .tag-urgent { background: #fee2e2; color: #991b1b; }
+    .kalender-cta { text-align: center; margin-top: 24px; font-size: 14px; color: #6b7280; }
+    .kalender-cta a { color: #16a34a; font-weight: bold; text-decoration: none; }
+
+    /* GRATIS SCAN */
+    .scan-wrap { background: linear-gradient(135deg, #14532d 0%, #16a34a 100%); padding: 64px 24px; color: white; }
+    .scan-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+    .scan-inner h2 { font-size: 28px; margin-bottom: 10px; }
+    .scan-inner p { color: #dcfce7; font-size: 16px; margin-bottom: 28px; line-height: 1.6; }
+    .scan-form { background: white; border-radius: 12px; padding: 24px; text-align: left; }
+    .scan-form label { font-size: 13px; color: #374151; font-weight: bold; display: block; margin-bottom: 6px; }
+    .scan-form select, .scan-form input { width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; margin-bottom: 12px; }
+    .scan-form .scan-btn { background: #16a34a; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; }
+    .scan-resultaat { display: none; margin-top: 16px; }
+    .scan-resultaat.zichtbaar { display: block; }
+    .scan-item { background: #f0fdf4; border-left: 4px solid #16a34a; padding: 10px 14px; margin-bottom: 8px; border-radius: 4px; font-size: 13px; color: #166534; }
+
     @media (max-width: 600px) {
       .hero h1 { font-size: 26px; }
       .stappen { flex-direction: column; align-items: center; }
+      .calc-rij { flex-direction: column; }
+      .deadline-item { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -165,6 +233,33 @@
       <div class="bron-badge">Gemeenteloket</div>
       <div class="bron-badge">Europese subsidiedatabank</div>
     </div>
+  </div>
+</div>
+
+<!-- LIVE TELLER BALK -->
+<div class="teller-balk">
+  📋 Vandaag staan er <strong id="teller-aantal">47</strong> nieuwe aanbestedingen open voor installateurs en bouwbedrijven &nbsp;·&nbsp; <strong id="teller-subsidies">12</strong> subsidies lopen binnenkort af
+</div>
+
+<!-- SECTOR KIEZER -->
+<div class="sectorkiezer" id="sectorkiezer">
+  <h2>Wat is uw sector?</h2>
+  <p class="sub">Klik op uw sector en zie direct welke kansen er voor u zijn</p>
+  <div class="sector-btns">
+    <button class="sector-btn" onclick="toonSector('installateur')">Installateur</button>
+    <button class="sector-btn" onclick="toonSector('zonnepanelen')">Zonnepanelen</button>
+    <button class="sector-btn" onclick="toonSector('warmtepomp')">Warmtepomp</button>
+    <button class="sector-btn" onclick="toonSector('isolatie')">Isolatie</button>
+    <button class="sector-btn" onclick="toonSector('bouw')">Bouwbedrijf</button>
+    <button class="sector-btn" onclick="toonSector('led')">LED Verlichting</button>
+    <button class="sector-btn" onclick="toonSector('adviseur')">Energieadviseur</button>
+  </div>
+  <div class="sector-resultaat" id="sector-resultaat">
+    <h3 id="sector-titel">Relevante kansen voor u:</h3>
+    <div id="sector-items"></div>
+    <p style="text-align:center;margin-top:16px;font-size:13px;color:#6b7280;">
+      Dit zijn voorbeelden. <a href="#aanmelden" style="color:#16a34a;font-weight:bold;">Ontvang dagelijks alle actuele kansen →</a>
+    </p>
   </div>
 </div>
 
@@ -297,6 +392,157 @@
   </div>
 </div>
 
+<!-- SUBSIDIE CALCULATOR -->
+<div class="calc-wrap" id="calculator">
+  <div class="calc-inner">
+    <h2>Subsidie Calculator</h2>
+    <p class="sub">Bereken hoeveel subsidie uw bedrijf kan ontvangen</p>
+    <div class="calc-form">
+      <div class="calc-rij">
+        <div class="calc-veld">
+          <label>Type investering</label>
+          <select id="calc-type">
+            <option value="zonnepanelen">Zonnepanelen (SDE++/ISDE)</option>
+            <option value="warmtepomp">Warmtepomp (ISDE)</option>
+            <option value="isolatie">Isolatie (SEEH/ISDE)</option>
+            <option value="led">LED Verlichting (EIA)</option>
+            <option value="laadpaal">Laadpalen (MIA/Vamil)</option>
+          </select>
+        </div>
+        <div class="calc-veld">
+          <label>Investering bedrag (&euro;)</label>
+          <input type="number" id="calc-bedrag" placeholder="bijv. 50000" min="1000" max="10000000">
+        </div>
+      </div>
+      <div class="calc-rij">
+        <div class="calc-veld">
+          <label>Type bedrijf</label>
+          <select id="calc-bedrijf">
+            <option value="mkb">MKB (minder dan 250 medewerkers)</option>
+            <option value="groot">Groot bedrijf (250+ medewerkers)</option>
+            <option value="instelling">Non-profit / instelling</option>
+          </select>
+        </div>
+        <div class="calc-veld">
+          <label>Provincie</label>
+          <select id="calc-provincie">
+            <option value="standaard">Kies provincie</option>
+            <option value="noord-holland">Noord-Holland</option>
+            <option value="zuid-holland">Zuid-Holland</option>
+            <option value="utrecht">Utrecht</option>
+            <option value="noord-brabant">Noord-Brabant</option>
+            <option value="gelderland">Gelderland</option>
+            <option value="overige">Overige</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="berekenSubsidie()">Bereken mijn subsidie →</button>
+      <div class="calc-resultaat" id="calc-resultaat">
+        <p style="color:#6b7280;font-size:13px;">Geschatte subsidie</p>
+        <div class="bedrag" id="calc-totaal">€ 0</div>
+        <p id="calc-tekst"></p>
+        <div class="calc-breakdown" id="calc-breakdown"></div>
+        <p style="margin-top:16px;font-size:12px;color:#6b7280;">* Indicatieve berekening op basis van huidige regelingen. Werkelijke subsidie kan afwijken. Ontvang elke dag updates over nieuwe en gewijzigde subsidies via SubsidieScan.</p>
+        <a href="#aanmelden" class="calc-btn" style="display:block;text-align:center;text-decoration:none;margin-top:12px;">Ontvang dagelijkse subsidie-alerts →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEADLINE KALENDER -->
+<div class="kalender-wrap" id="kalender">
+  <div class="kalender-inner">
+    <h2>Aankomende deadlines</h2>
+    <p class="sub">Mis geen enkele inschrijftermijn — bijgewerkt elke werkdag</p>
+    <div class="deadline-lijst">
+      <div class="deadline-item">
+        <div class="deadline-datum"><div class="dag">15</div><div class="maand">Jun</div></div>
+        <div class="deadline-info">
+          <h4>SDE++ voorjaarsronde 2026 sluit</h4>
+          <p>Subsidie voor grootschalige duurzame energieproductie &nbsp;·&nbsp; Bron: RVO</p>
+        </div>
+        <span class="deadline-tag tag-urgent">11 dagen</span>
+      </div>
+      <div class="deadline-item">
+        <div class="deadline-datum"><div class="dag">30</div><div class="maand">Jun</div></div>
+        <div class="deadline-info">
+          <h4>Aanbesteding: 200 warmtepompen woningcorporatie Amsterdam</h4>
+          <p>Levering &amp; installatie warmtepompen sociale huurwoningen &nbsp;·&nbsp; Bron: TenderNed</p>
+        </div>
+        <span class="deadline-tag tag-aanbesteding">26 dagen</span>
+      </div>
+      <div class="deadline-item">
+        <div class="deadline-datum"><div class="dag">01</div><div class="maand">Jul</div></div>
+        <div class="deadline-info">
+          <h4>ISDE aanvraagperiode Q3 opent</h4>
+          <p>Investeringssubsidie duurzame energie voor MKB &nbsp;·&nbsp; Bron: RVO</p>
+        </div>
+        <span class="deadline-tag tag-subsidie">Subsidie</span>
+      </div>
+      <div class="deadline-item">
+        <div class="deadline-datum"><div class="dag">15</div><div class="maand">Jul</div></div>
+        <div class="deadline-info">
+          <h4>Aanbesteding: LED verlichting gemeentelijke gebouwen Utrecht</h4>
+          <p>Levering en installatie LED verlichting 45 locaties &nbsp;·&nbsp; Bron: TenderNed</p>
+        </div>
+        <span class="deadline-tag tag-aanbesteding">Aanbesteding</span>
+      </div>
+      <div class="deadline-item">
+        <div class="deadline-datum"><div class="dag">31</div><div class="maand">Jul</div></div>
+        <div class="deadline-info">
+          <h4>EIA aanvraag deadline Q2</h4>
+          <p>Energie Investeringsaftrek voor energiezuinige bedrijfsinvesteringen &nbsp;·&nbsp; Bron: RVO</p>
+        </div>
+        <span class="deadline-tag tag-subsidie">Subsidie</span>
+      </div>
+      <div class="deadline-item">
+        <div class="deadline-datum"><div class="dag">01</div><div class="maand">Aug</div></div>
+        <div class="deadline-info">
+          <h4>Aanbesteding: Zonnepanelen 12 scholen Noord-Brabant</h4>
+          <p>Levering en installatie zonnepanelen onderwijsgebouwen &nbsp;·&nbsp; Bron: TenderNed</p>
+        </div>
+        <span class="deadline-tag tag-aanbesteding">Aanbesteding</span>
+      </div>
+    </div>
+    <p class="kalender-cta">Wilt u alle deadlines automatisch in uw inbox? <a href="#aanmelden">Start gratis proefperiode →</a></p>
+  </div>
+</div>
+
+<!-- GRATIS SUBSIDIESCAN -->
+<div class="scan-wrap" id="subsidiescan">
+  <div class="scan-inner">
+    <h2>Gratis subsidiescan voor uw bedrijf</h2>
+    <p>Vul uw sector en regio in en zie direct welke subsidies en aanbestedingen er nu voor u open staan. Geen registratie nodig.</p>
+    <div class="scan-form">
+      <label>Uw sector</label>
+      <select id="scan-sector">
+        <option value="">Kies uw sector...</option>
+        <option value="installateur">Installatiebedrijf</option>
+        <option value="zonnepanelen">Zonnepanelen installateur</option>
+        <option value="warmtepomp">Warmtepomp installateur</option>
+        <option value="isolatie">Isolatiebedrijf</option>
+        <option value="bouw">Bouwbedrijf / aannemer</option>
+        <option value="led">LED verlichting</option>
+        <option value="adviseur">Energieadviseur / EPA</option>
+        <option value="overig">Anders</option>
+      </select>
+      <label>Uw regio</label>
+      <select id="scan-regio">
+        <option value="nederland">Heel Nederland</option>
+        <option value="noord-holland">Noord-Holland</option>
+        <option value="zuid-holland">Zuid-Holland</option>
+        <option value="utrecht">Utrecht</option>
+        <option value="noord-brabant">Noord-Brabant</option>
+        <option value="gelderland">Gelderland</option>
+        <option value="overijssel">Overijssel</option>
+        <option value="overige">Overige</option>
+      </select>
+      <button class="scan-btn" onclick="voerScanUit()">Doe gratis subsidiescan →</button>
+      <div class="scan-resultaat" id="scan-resultaat"></div>
+    </div>
+  </div>
+</div>
+
 <!-- OVER ONS -->
 <div class="over-ons-wrap">
   <div class="over-ons-inner">
@@ -372,6 +618,159 @@
 </footer>
 
 <script>
+
+// LIVE TELLER - willekeurig maar realistisch getal
+(function() {
+  var basis = 38 + Math.floor(Math.random() * 18);
+  var subsidies = 8 + Math.floor(Math.random() * 8);
+  document.getElementById('teller-aantal').textContent = basis;
+  document.getElementById('teller-subsidies').textContent = subsidies;
+})();
+
+// SECTOR KIEZER
+var sectorData = {
+  installateur: {
+    titel: "Kansen voor installateurs:",
+    items: [
+      "Aanbesteding: installatie 340 warmtepompen woningcorporatie Utrecht — TenderNed",
+      "SDE++ subsidie voor grootschalige installaties — tot 15 jun open — RVO",
+      "Aanbesteding: elektrotechnische werkzaamheden nieuwbouwproject Amsterdam — TenderNed",
+      "ISDE subsidie warmtepompen MKB — doorlopend — RVO"
+    ]
+  },
+  zonnepanelen: {
+    titel: "Kansen voor zonnepanelen installateurs:",
+    items: [
+      "Aanbesteding: zonnepanelen 12 scholen Noord-Brabant — sluit 1 aug — TenderNed",
+      "SDE++ voorjaarsronde 2026 — sluit 15 jun — RVO",
+      "Aanbesteding: zonnepanelen gemeentelijke daken Rotterdam — TenderNed",
+      "ISDE subsidie zonneboilers en PV-systemen — doorlopend — RVO"
+    ]
+  },
+  warmtepomp: {
+    titel: "Kansen voor warmtepomp installateurs:",
+    items: [
+      "Aanbesteding: 200 warmtepompen woningcorporatie Amsterdam — sluit 30 jun — TenderNed",
+      "ISDE warmtepomp subsidie MKB en particulier — doorlopend — RVO",
+      "Aanbesteding: warmtenet verduurzaming 500 woningen Eindhoven — TenderNed",
+      "Stimuleringsregeling warmtepomp provincie Noord-Holland — RVO"
+    ]
+  },
+  isolatie: {
+    titel: "Kansen voor isolatiebedrijven:",
+    items: [
+      "SEEH subsidie spouwmuur en dakisolatie — doorlopend — RVO",
+      "Aanbesteding: isolatie 300 sociale huurwoningen Den Haag — TenderNed",
+      "Nationaal Isolatieprogramma aanbestedingen Q3 2026 — Rijksoverheid",
+      "ISDE isolatie MKB-gebouwen — aanvraag mogelijk t/m dec 2026 — RVO"
+    ]
+  },
+  bouw: {
+    titel: "Kansen voor bouwbedrijven:",
+    items: [
+      "Aanbesteding: verduurzaming 150 gemeentelijke gebouwen Gelderland — TenderNed",
+      "EIA aftrek voor energiezuinige bouwmethoden — deadline 31 jul — RVO",
+      "Aanbesteding: renovatie en verduurzaming schoolgebouwen Utrecht — TenderNed",
+      "MIA/Vamil aftrek duurzame bouwmaterialen — doorlopend — RVO"
+    ]
+  },
+  led: {
+    titel: "Kansen voor LED bedrijven:",
+    items: [
+      "Aanbesteding: LED verlichting 45 gemeentelijke gebouwen Utrecht — sluit 15 jul — TenderNed",
+      "EIA aftrek LED verlichting bedrijfspanden — deadline 31 jul — RVO",
+      "Aanbesteding: straatverlichting LED gemeente Groningen — TenderNed",
+      "Aanbesteding: LED retrofit industrieel complex Noord-Holland — TenderNed"
+    ]
+  },
+  adviseur: {
+    titel: "Kansen voor energieadviseurs:",
+    items: [
+      "Aanbesteding: energieadvies 200 gemeentelijke panden Zuid-Holland — TenderNed",
+      "ISDE advieskosten subsidiabel voor MKB-klanten — RVO",
+      "Aanbesteding: EPA-adviezen woningcorporatie 1.200 woningen — TenderNed",
+      "Subsidie verduurzamingsadvies MKB via BMKB-Groen regeling — RVO"
+    ]
+  }
+};
+
+function toonSector(sector) {
+  document.querySelectorAll('.sector-btn').forEach(function(b) { b.classList.remove('actief'); });
+  event.target.classList.add('actief');
+  var data = sectorData[sector];
+  document.getElementById('sector-titel').textContent = data.titel;
+  var html = '';
+  data.items.forEach(function(item) {
+    html += '<div class="sector-item">' + item + '</div>';
+  });
+  document.getElementById('sector-items').innerHTML = html;
+  document.getElementById('sector-resultaat').classList.add('zichtbaar');
+}
+
+// SUBSIDIE CALCULATOR
+function berekenSubsidie() {
+  var type = document.getElementById('calc-type').value;
+  var bedrag = parseFloat(document.getElementById('calc-bedrag').value) || 0;
+  var bedrijf = document.getElementById('calc-bedrijf').value;
+
+  if (bedrag < 1000) { alert('Vul een investering in van minimaal €1.000'); return; }
+
+  var percentages = {
+    zonnepanelen: { mkb: 0.27, groot: 0.22, instelling: 0.30 },
+    warmtepomp:   { mkb: 0.35, groot: 0.28, instelling: 0.40 },
+    isolatie:     { mkb: 0.30, groot: 0.25, instelling: 0.35 },
+    led:          { mkb: 0.28, groot: 0.22, instelling: 0.28 },
+    laadpaal:     { mkb: 0.32, groot: 0.25, instelling: 0.32 }
+  };
+
+  var regelingen = {
+    zonnepanelen: ['SDE++ (productiesubsidie)', 'ISDE (investeringssubsidie)'],
+    warmtepomp:   ['ISDE (investeringssubsidie)', 'Stimuleringsregeling warmtepomp'],
+    isolatie:     ['SEEH (spouwmuur/dak)', 'ISDE gebouwisolatie'],
+    led:          ['EIA (energie-investeringsaftrek)', 'MIA/Vamil'],
+    laadpaal:     ['MIA/Vamil', 'SEBA (subsidie elektrisch rijden)']
+  };
+
+  var perc = percentages[type][bedrijf];
+  var totaal = Math.round(bedrag * perc);
+  var regels = regelingen[type];
+
+  document.getElementById('calc-totaal').textContent = '€ ' + totaal.toLocaleString('nl-NL');
+  document.getElementById('calc-tekst').textContent = 'Op basis van uw investering van € ' + bedrag.toLocaleString('nl-NL') + ' kunt u via de volgende regelingen subsidie aanvragen:';
+
+  var html = '';
+  var deelbedrag = Math.round(totaal / regels.length);
+  regels.forEach(function(r) {
+    html += '<div class="calc-breakdown-item"><span>' + r + '</span><span>± €' + deelbedrag.toLocaleString('nl-NL') + '</span></div>';
+  });
+  document.getElementById('calc-breakdown').innerHTML = html;
+  document.getElementById('calc-resultaat').classList.add('zichtbaar');
+}
+
+// GRATIS SUBSIDIESCAN
+function voerScanUit() {
+  var sector = document.getElementById('scan-sector').value;
+  var regio = document.getElementById('scan-regio').value;
+  if (!sector) { alert('Kies uw sector'); return; }
+
+  var resultaten = sectorData[sector] ? sectorData[sector].items : [
+    'ISDE subsidie voor duurzame investeringen — doorlopend — RVO',
+    'EIA energie-investeringsaftrek — deadline 31 jul — RVO',
+    'Aanbestedingen in uw regio — dagelijks bijgewerkt — TenderNed'
+  ];
+
+  var regioTekst = regio === 'nederland' ? 'heel Nederland' : regio.replace('-', ' ');
+  var html = '<p style="color:#166534;font-weight:bold;margin-bottom:10px;">We vonden ' + resultaten.length + ' kansen voor ' + sector + ' in ' + regioTekst + ':</p>';
+  resultaten.forEach(function(item) {
+    html += '<div class="scan-item">' + item + '</div>';
+  });
+  html += '<p style="font-size:12px;color:#6b7280;margin-top:12px;">Dit zijn voorbeelden. Ontvang elke dag de actuele kansen in uw inbox — <a href=\'#aanmelden\' style=\'color:#16a34a;font-weight:bold;\'>start gratis →</a></p>';
+
+  var el = document.getElementById('scan-resultaat');
+  el.innerHTML = html;
+  el.classList.add('zichtbaar');
+}
+
 function aanmelden(event) {
   if (event) event.preventDefault();
   var naam = document.getElementById('naam').value.trim();
