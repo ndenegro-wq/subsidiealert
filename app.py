@@ -1,106 +1,157 @@
-"""
-SubsidieAlert Webhook API
-Ontvangt aanmeldingen van de website en stuurt een notificatiemail
-"""
-
 import os, json, smtplib
 from datetime import datetime
-from email.mime.text import MIMEText
 from flask import Flask, request, jsonify
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 app = Flask(__name__)
 
-SMTP_USER = os.environ.get("SMTP_USER", "subsidiescan.alerts@gmail.com")
-SMTP_PASS = os.environ.get("SMTP_PASS", "febgoqotranvirxj")
-NOTIF_EMAIL = os.environ.get("NOTIF_EMAIL", "subsidiescan.alerts@gmail.com")
+SMTP_USER  = "subsidiescan.alerts@gmail.com"
+SMTP_PASS  = "febgoqotranvirxj"
+NICK_EMAIL = "nickdenegro@icloud.com"
 
-def stuur_notificatie(naam, email, pakket):
+# ── Mail versturen ────────────────────────────────────────────────
+def stuur_mail(aan, onderwerp, html, tekst):
     try:
-        tekst = f"""Nieuwe aanmelding op SubsidieAlert!
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = onderwerp
+        msg["From"]    = f"SubsidieAlert <{SMTP_USER}>"
+        msg["To"]      = aan
+        msg.attach(MIMEText(tekst, "plain", "utf-8"))
+        msg.attach(MIMEText(html,  "html",  "utf-8"))
+        with smtplib.SMTP("smtp.gmail.com", 587) as s:
+            s.starttls()
+            s.login(SMTP_USER, SMTP_PASS)
+            s.sendmail(SMTP_USER, aan, msg.as_string())
+        print(f"  Mail verstuurd naar {aan}")
+        return True
+    except Exception as e:
+        print(f"  Mail fout: {e}")
+        return False
 
-Naam:   {naam}
-Email:  {email}
-Pakket: {pakket}
+def stuur_bevestiging(naam, email, pakket, telefoon):
+    voornaam = naam.strip().split()[0] if naam.strip() else "daar"
+    prijs_map = {"basis": "€19/maand", "pro": "€29/maand", "volledig": "€299 eenmalig",
+                 "starter": "€19/maand", "professional": "€29/maand"}
+    prijs = prijs_map.get(pakket.lower(), pakket)
+
+    html = f"""
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+      <div style="background:#1a3a6e;padding:28px;text-align:center;">
+        <h1 style="color:#fff;margin:0;font-size:22px;">SubsidieAlert</h1>
+        <p style="color:#a0c4ff;margin:6px 0 0;font-size:14px;">Dagelijkse subsidie-alerts voor MKB Nederland</p>
+      </div>
+      <div style="padding:32px;background:#fff;">
+        <h2 style="color:#1a3a6e;margin-top:0;">Bedankt voor je aanmelding, {voornaam}!</h2>
+        <p style="color:#444;line-height:1.7;">
+          We hebben je aanmelding ontvangen. Nick neemt <strong>binnen 1 werkdag</strong> persoonlijk contact met je op.
+        </p>
+        <div style="background:#f0f7ff;border-left:4px solid #1a3a6e;padding:16px;margin:20px 0;border-radius:4px;">
+          <strong style="color:#1a3a6e;">Jouw aanmelding</strong><br><br>
+          Pakket: <strong>{pakket.upper()}</strong> &mdash; {prijs}<br>
+          Datum: {datetime.now().strftime('%d %B %Y om %H:%M')}
+        </div>
+        <p style="color:#444;line-height:1.7;">
+          Elke ochtend voor 08:00 ontvang je een persoonlijk overzicht van nieuwe subsidies en aanbestedingen passend bij jouw bedrijf.
+        </p>
+        <p style="color:#444;">Vragen? Antwoord gewoon op deze mail.</p>
+        <hr style="border:none;border-top:1px solid #eee;margin:24px 0;">
+        <p style="color:#999;font-size:12px;margin:0;">
+          SubsidieAlert &bull; <a href="https://www.subsidiealert.nl" style="color:#1a3a6e;">www.subsidiealert.nl</a>
+        </p>
+      </div>
+    </div>"""
+
+    tekst = f"""Hallo {voornaam},
+
+Bedankt voor je aanmelding bij SubsidieAlert!
+
+Pakket: {pakket.upper()} — {prijs}
 Datum:  {datetime.now().strftime('%d-%m-%Y %H:%M')}
 
-Voeg deze persoon toe aan abonnees.json als dat nog niet automatisch is gebeurd.
-"""
-        msg = MIMEText(tekst, "plain", "utf-8")
-        msg["Subject"] = f"Nieuwe aanmelding SubsidieAlert: {naam}"
-        msg["From"] = SMTP_USER
-        msg["To"] = NOTIF_EMAIL
+Nick neemt binnen 1 werkdag contact met je op.
 
-        with smtplib.SMTP("smtp.gmail.com", 587, timeout=10) as s:
-            s.starttls()
-            s.login(SMTP_USER, SMTP_PASS)
-            s.sendmail(SMTP_USER, NOTIF_EMAIL, msg.as_string())
-        print(f"Notificatie verstuurd: {naam} <{email}>")
-    except Exception as e:
-        print(f"Notificatie mislukt: {e}")
+Vragen? Antwoord op deze mail.
 
-def stuur_welkomstmail(naam, email, pakket):
-    try:
-        tekst = f"""Hallo {naam},
+Met vriendelijke groet,
+Nick de Negro
+SubsidieAlert — www.subsidiealert.nl"""
 
-Welkom bij SubsidieAlert! Je gratis proefperiode van 14 dagen is gestart.
+    stuur_mail(email, f"Bevestiging aanmelding SubsidieAlert — {pakket.upper()}", html, tekst)
 
-Elke ochtend voor 08:00 ontvang je een overzicht van nieuwe subsidies en aanbestedingen in de duurzaamheidssector.
+def stuur_notificatie(naam, email, pakket, telefoon, datum):
+    prijs_map = {"basis": "€19/mnd", "pro": "€29/mnd", "volledig": "€299",
+                 "starter": "€19/mnd", "professional": "€29/mnd"}
+    prijs = prijs_map.get(pakket.lower(), pakket)
 
-Pakket: {pakket.upper()}
-- Basis: RVO subsidies + TenderNed aanbestedingen
-- Pro: alle bronnen + gemeenten + sectorfilter
+    html = f"""<div style="font-family:Arial,sans-serif;padding:20px;max-width:500px;">
+    <h2 style="color:#1a3a6e;margin-top:0;">Nieuwe aanmelding!</h2>
+    <table style="width:100%;border-collapse:collapse;">
+      <tr><td style="padding:10px 8px;color:#666;width:110px;border-bottom:1px solid #eee;">Naam</td>
+          <td style="padding:10px 8px;font-weight:bold;border-bottom:1px solid #eee;">{naam}</td></tr>
+      <tr><td style="padding:10px 8px;color:#666;border-bottom:1px solid #eee;">Email</td>
+          <td style="padding:10px 8px;border-bottom:1px solid #eee;"><a href="mailto:{email}">{email}</a></td></tr>
+      <tr><td style="padding:10px 8px;color:#666;border-bottom:1px solid #eee;">Telefoon</td>
+          <td style="padding:10px 8px;border-bottom:1px solid #eee;">{telefoon or 'niet opgegeven'}</td></tr>
+      <tr><td style="padding:10px 8px;color:#666;border-bottom:1px solid #eee;">Pakket</td>
+          <td style="padding:10px 8px;font-weight:bold;color:#1a3a6e;border-bottom:1px solid #eee;">{pakket.upper()} — {prijs}</td></tr>
+      <tr><td style="padding:10px 8px;color:#666;">Datum</td>
+          <td style="padding:10px 8px;">{datum}</td></tr>
+    </table>
+    </div>"""
 
-Vragen? Stuur een reply op deze mail.
+    tekst = f"""NIEUWE AANMELDING SubsidieAlert
 
-Groet,
-Nick
-SubsidieAlert
-www.subsidiealert.nl
-"""
-        msg = MIMEText(tekst, "plain", "utf-8")
-        msg["Subject"] = f"Welkom bij SubsidieAlert, {naam.split()[0]}!"
-        msg["From"] = SMTP_USER
-        msg["To"] = email
-        msg["Reply-To"] = NOTIF_EMAIL
+Naam:     {naam}
+Email:    {email}
+Telefoon: {telefoon or 'niet opgegeven'}
+Pakket:   {pakket.upper()} — {prijs}
+Datum:    {datum}"""
 
-        with smtplib.SMTP("smtp.gmail.com", 587, timeout=10) as s:
-            s.starttls()
-            s.login(SMTP_USER, SMTP_PASS)
-            s.sendmail(SMTP_USER, email, msg.as_string())
-        print(f"Welkomstmail verstuurd naar {email}")
-    except Exception as e:
-        print(f"Welkomstmail mislukt: {e}")
+    stuur_mail(NICK_EMAIL, f"Nieuwe aanmelding: {naam} — {pakket.upper()} {prijs}", html, tekst)
 
+
+# ── CORS ──────────────────────────────────────────────────────────
 @app.after_request
 def cors(resp):
-    resp.headers["Access-Control-Allow-Origin"] = "*"
+    resp.headers["Access-Control-Allow-Origin"]  = "*"
     resp.headers["Access-Control-Allow-Headers"] = "Content-Type"
-    resp.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+    resp.headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
     return resp
 
-@app.route("/aanmelding", methods=["POST", "OPTIONS"])
-def aanmelding():
-    if request.method == "OPTIONS":
-        return jsonify({"ok": True}), 200
+# ── Routes ────────────────────────────────────────────────────────
+@app.route("/", methods=["GET"])
+def home():
+    return "SubsidieAlert Webhook API actief"
 
-    data = request.get_json(silent=True) or {}
-    naam  = data.get("naam", "").strip()
-    email = data.get("email", "").strip()
-    pakket = data.get("pakket", "basis").strip()
+@app.route("/aanmelding", methods=["GET", "POST", "OPTIONS"])
+def aanmelding():
+    if request.method in ("OPTIONS", "GET"):
+        return jsonify({"ok": True})
+
+    data     = request.get_json(silent=True) or {}
+    naam     = data.get("naam",     "").strip()
+    email    = data.get("email",    "").strip()
+    pakket   = data.get("pakket",   "basis").strip()
+    telefoon = data.get("telefoon", "").strip()
 
     if not naam or not email or "@" not in email:
         return jsonify({"ok": False, "fout": "Naam of email ontbreekt"}), 400
 
-    print(f"AANMELDING: {naam} | {email} | {pakket}")
+    datum = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+    print(f"AANMELDING: {naam} | {email} | {pakket} | {datum}")
 
-    stuur_notificatie(naam, email, pakket)
-    stuur_welkomstmail(naam, email, pakket)
+    # Direct mails sturen — aanmelding gaat nooit verloren
+    stuur_bevestiging(naam, email, pakket, telefoon)
+    stuur_notificatie(naam, email, pakket, telefoon, datum)
 
-    return jsonify({"ok": True, "bericht": "Aanmelding ontvangen"})
+    return jsonify({"ok": True, "bericht": "Aanmelding ontvangen, bevestiging verstuurd"})
 
-@app.route("/", methods=["GET"])
-def home():
-    return "SubsidieAlert Webhook API — actief"
+
+@app.route("/status", methods=["GET"])
+def status():
+    return jsonify({"status": "online", "tijd": datetime.now().strftime("%d-%m-%Y %H:%M:%S")})
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5055)))
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
