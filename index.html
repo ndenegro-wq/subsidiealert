@@ -1699,19 +1699,18 @@ function aanmelden(event) {
   var mailto = 'mailto:subsidiescan.alerts@gmail.com?subject=' + onderwerp + '&body=' + body;
 
   // Stuur aanmelding naar eigen webhook server
+  var tel = prompt('Wat is uw telefoonnummer? (optioneel)') || '';
+  var payload = JSON.stringify({
+    naam: naam, email: email, pakket: pakket,
+    telefoon: tel, datum: new Date().toLocaleString('nl-NL')
+  });
   fetch('https://subsidiealert-webhook.onrender.com/aanmelding', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      naam: naam,
-      email: email,
-      pakket: pakket,
-      datum: new Date().toLocaleString('nl-NL')
-    })
+    body: payload
   }).catch(function() {
-    // Fallback via mailto als webhook offline is
     var onderwerp = encodeURIComponent('Nieuwe aanmelding: ' + naam + ' (' + pakket + ')');
-    var lichaam = encodeURIComponent('Naam: ' + naam + '\nEmail: ' + email + '\nPakket: ' + pakket + '\nDatum: ' + new Date().toLocaleString('nl-NL'));
+    var lichaam = encodeURIComponent('Naam: ' + naam + '\nEmail: ' + email + '\nTelefoon: ' + tel + '\nPakket: ' + pakket + '\nDatum: ' + new Date().toLocaleString('nl-NL'));
     window.location.href = 'mailto:subsidiescan.alerts@gmail.com?subject=' + onderwerp + '&body=' + lichaam;
   });
 }
