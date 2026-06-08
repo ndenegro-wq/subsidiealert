@@ -233,7 +233,7 @@ def dagelijkse_scheduler():
     al_verstuurd_vandaag = None
     while True:
         nu = datetime.now()
-        if nu.hour == 8 and nu.minute == 0:
+        if nu.hour == 7 and nu.minute == 0:
             datum_vandaag = nu.strftime('%Y-%m-%d')
             if al_verstuurd_vandaag != datum_vandaag:
                 al_verstuurd_vandaag = datum_vandaag
