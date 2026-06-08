@@ -1,4 +1,4 @@
-import os, json, smtplib
+import os, json, smtplib, threading, time
 from datetime import datetime
 from flask import Flask, request, jsonify
 from email.mime.multipart import MIMEMultipart
@@ -6,9 +6,35 @@ from email.mime.text import MIMEText
 
 app = Flask(__name__)
 
-SMTP_USER  = "subsidiescan.alerts@gmail.com"
-SMTP_PASS  = "febgoqotranvirxj"
-NICK_EMAIL = "nickdenegro@icloud.com"
+SMTP_USER    = "subsidiescan.alerts@gmail.com"
+SMTP_PASS    = "febgoqotranvirxj"
+NICK_EMAIL   = "nickdenegro@icloud.com"
+KLANTEN_PAD  = os.path.join(os.path.dirname(__file__), 'klanten.json')
+
+# ── Klanten opslaan / laden ────────────────────────────────────────
+def laad_klanten():
+    try:
+        with open(KLANTEN_PAD, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+def sla_klant_op(naam, email, pakket, telefoon):
+    klanten = laad_klanten()
+    # Voorkom dubbele aanmeldingen
+    for k in klanten:
+        if k.get('email', '').lower() == email.lower():
+            return
+    klanten.append({
+        'naam':     naam,
+        'email':    email,
+        'pakket':   pakket,
+        'telefoon': telefoon,
+        'datum':    datetime.now().strftime('%d-%m-%Y %H:%M:%S'),
+        'actief':   True
+    })
+    with open(KLANTEN_PAD, 'w', encoding='utf-8') as f:
+        json.dump(klanten, f, ensure_ascii=False, indent=2)
 
 # ── Mail versturen ────────────────────────────────────────────────
 def stuur_mail(aan, onderwerp, html, tekst):
@@ -44,18 +70,28 @@ def stuur_bevestiging(naam, email, pakket, telefoon):
       <div style="padding:32px;background:#fff;">
         <h2 style="color:#1a3a6e;margin-top:0;">Bedankt voor je aanmelding, {voornaam}!</h2>
         <p style="color:#444;line-height:1.7;">
-          We hebben je aanmelding ontvangen. Nick neemt <strong>binnen 1 werkdag</strong> persoonlijk contact met je op.
+          Geweldig dat je erbij bent! Om jouw persoonlijke subsidie-alerts zo goed mogelijk af te stemmen,
+          hebben we nog een paar gegevens van je nodig. <strong>Beantwoord deze mail</strong> met de onderstaande informatie:
+        </p>
+        <div style="background:#f0f7ff;border-left:4px solid #1a3a6e;padding:16px;margin:20px 0;border-radius:4px;">
+          <strong style="color:#1a3a6e;">Vul dit in en stuur terug:</strong><br><br>
+          1. <strong>Bedrijfsnaam:</strong> ...<br>
+          2. <strong>Sector / branche:</strong> (bijv. bouw, zorg, tech, horeca) ...<br>
+          3. <strong>Postcode:</strong> ...<br>
+          4. <strong>Aantal medewerkers:</strong> ...<br>
+          5. <strong>Waar ben je naar op zoek?</strong> (bijv. innovatie, verduurzaming, groei) ...
+        </div>
+        <p style="color:#444;line-height:1.7;">
+          Zodra we dit ontvangen, stellen we jouw profiel in en ontvang je elke ochtend voor 08:00
+          een persoonlijk overzicht van subsidies en aanbestedingen die bij jouw bedrijf passen.
         </p>
         <div style="background:#f0f7ff;border-left:4px solid #1a3a6e;padding:16px;margin:20px 0;border-radius:4px;">
           <strong style="color:#1a3a6e;">Jouw aanmelding</strong><br><br>
           Pakket: <strong>{pakket.upper()}</strong> &mdash; {prijs}<br>
           Datum: {datetime.now().strftime('%d %B %Y om %H:%M')}
         </div>
-        <p style="color:#444;line-height:1.7;">
-          Elke ochtend voor 08:00 ontvang je een persoonlijk overzicht van nieuwe subsidies en aanbestedingen passend bij jouw bedrijf.
-        </p>
-        <p style="color:#444;">Vragen? Antwoord gewoon op deze mail.</p>
         <hr style="border:none;border-top:1px solid #eee;margin:24px 0;">
+        <p style="color:#444;font-size:13px;margin:0 0 6px;">Met vriendelijke groet,<br><strong>Mark Van Veen</strong></p>
         <p style="color:#999;font-size:12px;margin:0;">
           SubsidieAlert &bull; <a href="https://www.subsidiealert.nl" style="color:#1a3a6e;">www.subsidiealert.nl</a>
         </p>
@@ -66,15 +102,23 @@ def stuur_bevestiging(naam, email, pakket, telefoon):
 
 Bedankt voor je aanmelding bij SubsidieAlert!
 
+Om jouw alerts goed af te stemmen, hebben we nog wat gegevens nodig.
+Beantwoord deze mail met het volgende:
+
+1. Bedrijfsnaam: ...
+2. Sector / branche: (bijv. bouw, zorg, tech, horeca) ...
+3. Postcode: ...
+4. Aantal medewerkers: ...
+5. Waar ben je naar op zoek? (bijv. innovatie, verduurzaming, groei) ...
+
+Zodra we dit ontvangen, stellen we jouw profiel in en ontvang je elke ochtend voor 08:00
+een persoonlijk overzicht van subsidies die bij jouw bedrijf passen.
+
 Pakket: {pakket.upper()} — {prijs}
 Datum:  {datetime.now().strftime('%d-%m-%Y %H:%M')}
 
-Nick neemt binnen 1 werkdag contact met je op.
-
-Vragen? Antwoord op deze mail.
-
 Met vriendelijke groet,
-Nick de Negro
+Mark Van Veen
 SubsidieAlert — www.subsidiealert.nl"""
 
     stuur_mail(email, f"Bevestiging aanmelding SubsidieAlert — {pakket.upper()}", html, tekst)
@@ -111,6 +155,101 @@ Datum:    {datum}"""
     stuur_mail(NICK_EMAIL, f"Nieuwe aanmelding: {naam} — {pakket.upper()} {prijs}", html, tekst)
 
 
+# ── Dagelijkse ochtendmail aan alle actieve klanten ───────────────
+def stuur_dagelijkse_alert(naam, email, pakket):
+    voornaam = naam.strip().split()[0] if naam.strip() else "daar"
+    datum_str = datetime.now().strftime('%d %B %Y')
+
+    html = f"""
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+      <div style="background:#1a3a6e;padding:28px;text-align:center;">
+        <h1 style="color:#fff;margin:0;font-size:22px;">SubsidieAlert</h1>
+        <p style="color:#a0c4ff;margin:6px 0 0;font-size:14px;">Jouw dagelijkse subsidie-update — {datum_str}</p>
+      </div>
+      <div style="padding:32px;background:#fff;">
+        <h2 style="color:#1a3a6e;margin-top:0;">Goedemorgen {voornaam},</h2>
+        <p style="color:#444;line-height:1.7;">
+          Hier is jouw dagelijkse overzicht van nieuwe subsidies en aanbestedingen voor {datum_str}.
+        </p>
+        <div style="background:#f0f7ff;border-left:4px solid #1a3a6e;padding:16px;margin:20px 0;border-radius:4px;">
+          <strong style="color:#1a3a6e;">Nieuw vandaag:</strong><br><br>
+          &bull; Wij zijn bezig jouw profiel verder in te stellen voor gepersonaliseerde alerts.<br>
+          &bull; Zodra jouw bedrijfsprofiel compleet is, ontvang je elke ochtend subsidies op maat.<br><br>
+          <strong>Heb je nog niet je bedrijfsprofiel ingevuld?</strong><br>
+          Beantwoord deze mail dan met je bedrijfsnaam, sector, postcode en wat je zoekt.
+        </div>
+        <p style="color:#444;line-height:1.7;">
+          Vragen? Beantwoord gewoon deze mail — we reageren binnen 24 uur.
+        </p>
+        <hr style="border:none;border-top:1px solid #eee;margin:24px 0;">
+        <p style="color:#444;font-size:13px;margin:0 0 6px;">Met vriendelijke groet,<br><strong>Mark Van Veen</strong></p>
+        <p style="color:#999;font-size:12px;margin:0;">
+          SubsidieAlert &bull; <a href="https://www.subsidiealert.nl" style="color:#1a3a6e;">www.subsidiealert.nl</a><br>
+          <span style="font-size:11px;">Afmelden? Beantwoord deze mail met 'afmelden'.</span>
+        </p>
+      </div>
+    </div>"""
+
+    tekst = f"""Goedemorgen {voornaam},
+
+Hier is jouw dagelijkse SubsidieAlert voor {datum_str}.
+
+We zijn bezig jouw profiel in te stellen voor gepersonaliseerde alerts.
+Zodra jouw bedrijfsprofiel compleet is, ontvang je elke ochtend subsidies op maat.
+
+Heb je nog niet je bedrijfsprofiel ingevuld?
+Beantwoord deze mail met: bedrijfsnaam, sector, postcode en wat je zoekt.
+
+Met vriendelijke groet,
+Mark Van Veen
+SubsidieAlert — www.subsidiealert.nl"""
+
+    return stuur_mail(email, f"Jouw SubsidieAlert — {datum_str}", html, tekst)
+
+
+def stuur_alle_dagelijkse_alerts():
+    klanten = laad_klanten()
+    actief  = [k for k in klanten if k.get('actief', True)]
+    print(f"[{datetime.now().strftime('%H:%M')}] Dagelijkse alerts versturen naar {len(actief)} klanten...")
+    verstuurd = 0
+    for k in actief:
+        ok = stuur_dagelijkse_alert(k['naam'], k['email'], k.get('pakket', 'basis'))
+        if ok:
+            verstuurd += 1
+        time.sleep(2)  # 2 sec pauze tussen mails (spam-preventie)
+    print(f"[{datetime.now().strftime('%H:%M')}] Klaar — {verstuurd}/{len(actief)} alerts verstuurd.")
+    # Stuur ook een overzicht naar Nick
+    if actief:
+        stuur_mail(
+            NICK_EMAIL,
+            f"SubsidieAlert: {verstuurd} dagelijkse mails verstuurd ({datetime.now().strftime('%d-%m-%Y')})",
+            f"<p>{verstuurd} van {len(actief)} klanten hebben vandaag hun dagelijkse alert ontvangen.</p>",
+            f"{verstuurd} van {len(actief)} klanten hebben vandaag hun dagelijkse alert ontvangen."
+        )
+
+
+# ── Scheduler: elke dag om 08:00 CET ─────────────────────────────
+def dagelijkse_scheduler():
+    al_verstuurd_vandaag = None
+    while True:
+        nu = datetime.now()
+        if nu.hour == 8 and nu.minute == 0:
+            datum_vandaag = nu.strftime('%Y-%m-%d')
+            if al_verstuurd_vandaag != datum_vandaag:
+                al_verstuurd_vandaag = datum_vandaag
+                try:
+                    stuur_alle_dagelijkse_alerts()
+                except Exception as e:
+                    print(f"Fout in dagelijkse alerts: {e}")
+        time.sleep(55)  # Check elke 55 seconden
+
+
+# Start scheduler in achtergrond
+scheduler_thread = threading.Thread(target=dagelijkse_scheduler, daemon=True)
+scheduler_thread.start()
+print("Dagelijkse alert scheduler gestart (stuurt elke dag om 08:00).")
+
+
 # ── CORS ──────────────────────────────────────────────────────────
 @app.after_request
 def cors(resp):
@@ -122,7 +261,9 @@ def cors(resp):
 # ── Routes ────────────────────────────────────────────────────────
 @app.route("/", methods=["GET"])
 def home():
-    return "SubsidieAlert Webhook API actief"
+    klanten = laad_klanten()
+    actief  = len([k for k in klanten if k.get('actief', True)])
+    return f"SubsidieAlert Webhook API actief | {actief} actieve klanten"
 
 @app.route("/aanmelding", methods=["GET", "POST", "OPTIONS"])
 def aanmelding():
@@ -141,16 +282,44 @@ def aanmelding():
     datum = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
     print(f"AANMELDING: {naam} | {email} | {pakket} | {datum}")
 
-    # Direct mails sturen — aanmelding gaat nooit verloren
+    # Klant opslaan voor dagelijkse alerts
+    sla_klant_op(naam, email, pakket, telefoon)
+
+    # Direct bevestigingsmail sturen
     stuur_bevestiging(naam, email, pakket, telefoon)
     stuur_notificatie(naam, email, pakket, telefoon, datum)
 
     return jsonify({"ok": True, "bericht": "Aanmelding ontvangen, bevestiging verstuurd"})
 
 
+@app.route("/klanten", methods=["GET"])
+def toon_klanten():
+    klanten = laad_klanten()
+    return jsonify({"totaal": len(klanten), "klanten": klanten})
+
+
+@app.route("/stuur_nu", methods=["GET", "POST"])
+def stuur_nu():
+    """Handmatig de dagelijkse alerts triggeren (voor testen of inhalen)."""
+    secret = request.args.get('key', '')
+    if secret != os.environ.get('ADMIN_KEY', 'subsidie2026'):
+        return jsonify({"ok": False, "fout": "Geen toegang"}), 403
+    threading.Thread(target=stuur_alle_dagelijkse_alerts, daemon=True).start()
+    klanten = laad_klanten()
+    actief  = len([k for k in klanten if k.get('actief', True)])
+    return jsonify({"ok": True, "bericht": f"Alerts worden verstuurd naar {actief} klanten"})
+
+
 @app.route("/status", methods=["GET"])
 def status():
-    return jsonify({"status": "online", "tijd": datetime.now().strftime("%d-%m-%Y %H:%M:%S")})
+    klanten = laad_klanten()
+    actief  = len([k for k in klanten if k.get('actief', True)])
+    return jsonify({
+        "status":           "online",
+        "tijd":             datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
+        "actieve_klanten":  actief,
+        "scheduler":        "actief — stuurt elke dag om 08:00"
+    })
 
 
 if __name__ == "__main__":
