@@ -244,10 +244,10 @@ def dagelijkse_scheduler():
         time.sleep(55)  # Check elke 55 seconden
 
 
-# Start scheduler in achtergrond
-scheduler_thread = threading.Thread(target=dagelijkse_scheduler, daemon=True)
-scheduler_thread.start()
-print("Dagelijkse alert scheduler gestart (stuurt elke dag om 08:00).")
+# Scheduler uitgeschakeld — SPX500 monitor stuurt signalen
+# scheduler_thread = threading.Thread(target=dagelijkse_scheduler, daemon=True)
+# scheduler_thread.start()
+print("Dagelijkse alert scheduler: UITGESCHAKELD.")
 
 
 # ── CORS ──────────────────────────────────────────────────────────
