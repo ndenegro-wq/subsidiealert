@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jouw voorkeuren — SubsidieScan</title>
+<meta name="description" content="Stel je SubsidieScan-overzicht af op jouw sector, thema's, regio en bedrijf. Zo ontvang je alleen de subsidies en aanbestedingen die voor jou relevant zijn.">
+<meta name="robots" content="noindex">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; background: #f3f6f4; color: #1f2937; line-height: 1.5; }
+  a { color: #16a34a; }
+
+  .topbar { background: #16a34a; padding: 14px 20px; }
+  .topbar .logo { color: #fff; font-size: 20px; font-weight: bold; letter-spacing: -0.5px; }
+  .topbar .logo span { color: #bbf7d0; }
+
+  .wrap { max-width: 640px; margin: 0 auto; padding: 24px 16px 56px; }
+
+  .intro { background: linear-gradient(135deg, #14532d 0%, #16a34a 100%); color: #fff; border-radius: 12px; padding: 24px 22px; margin-bottom: 22px; }
+  .intro h1 { font-size: 23px; line-height: 1.25; margin-bottom: 8px; }
+  .intro p { font-size: 14px; color: #dcfce7; }
+
+  form { display: block; }
+  .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px 20px 18px; margin-bottom: 16px; }
+  .card h2 { font-size: 15px; color: #14532d; margin-bottom: 4px; }
+  .card .hint { font-size: 12px; color: #6b7280; margin-bottom: 14px; }
+
+  .field { margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+  label.lbl { display: block; font-size: 13px; font-weight: bold; color: #374151; margin-bottom: 6px; }
+  input[type="text"], input[type="email"], select, textarea {
+    width: 100%; font-size: 15px; font-family: inherit; color: #1f2937;
+    padding: 11px 12px; border: 1px solid #d1d5db; border-radius: 8px; background: #fff;
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid #16a34a; outline-offset: 1px; border-color: #16a34a; }
+  textarea { min-height: 72px; resize: vertical; }
+
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  @media (max-width: 460px) { .options { grid-template-columns: 1fr; } }
+  .opt { display: flex; align-items: flex-start; gap: 9px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px 11px; cursor: pointer; font-size: 14px; }
+  .opt:hover { border-color: #16a34a; }
+  .opt input { margin-top: 2px; width: 17px; height: 17px; accent-color: #16a34a; flex-shrink: 0; }
+  .opt span { line-height: 1.35; }
+
+  .btn { width: 100%; background: #16a34a; color: #fff; font-size: 16px; font-weight: bold; border: none; border-radius: 10px; padding: 15px; cursor: pointer; }
+  .btn:hover { background: #15803d; }
+  .btn:disabled { background: #9ca3af; cursor: default; }
+
+  .foot { text-align: center; font-size: 12px; color: #9ca3af; margin-top: 18px; }
+  .err { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; border-radius: 8px; padding: 11px 13px; font-size: 14px; margin-bottom: 16px; }
+
+  .thanks { display: none; background: #fff; border: 1px solid #bbf7d0; border-radius: 12px; padding: 32px 24px; text-align: center; }
+  .thanks .check { width: 54px; height: 54px; border-radius: 50%; background: #16a34a; color: #fff; font-size: 30px; line-height: 54px; margin: 0 auto 14px; }
+  .thanks h2 { font-size: 20px; color: #14532d; margin-bottom: 8px; }
+  .thanks p { font-size: 14px; color: #4b5563; max-width: 420px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<div class="topbar"><span class="logo">Subsidie<span>Scan</span></span></div>
+
+<div class="wrap">
+  <div class="intro">
+    <h1>Stel je overzicht in</h1>
+    <p>Vertel ons wat voor jou belangrijk is, dan ontvang je elke ochtend alleen de subsidies en aanbestedingen die bij jouw bedrijf passen.</p>
+  </div>
+
+  <div id="formError" class="err" hidden></div>
+
+  <form id="prefForm" novalidate>
+    <div class="card">
+      <h2>Over jou</h2>
+      <p class="hint">Zodat we je overzicht aan je abonnement koppelen.</p>
+      <div class="field">
+        <label class="lbl" for="naam">Naam *</label>
+        <input type="text" id="naam" name="Naam" autocomplete="name">
+      </div>
+      <div class="field">
+        <label class="lbl" for="bedrijf">Bedrijf</label>
+        <input type="text" id="bedrijf" name="Bedrijf" autocomplete="organization">
+      </div>
+      <div class="field">
+        <label class="lbl" for="email">E-mailadres *</label>
+        <input type="email" id="email" name="E-mailadres" autocomplete="email">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>In welke sector(en) ben je actief?</h2>
+      <p class="hint">Kies er zoveel als van toepassing zijn.</p>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="Sector" value="Installatie"><span>Installatie</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="Bouw"><span>Bouw</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="Isolatie"><span>Isolatie</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="Energie-advies"><span>Energie-advies</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="Industrie / productie"><span>Industrie / productie</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="Landbouw"><span>Landbouw</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="Transport / logistiek"><span>Transport / logistiek</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="ICT / tech"><span>ICT / tech</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="Zorg"><span>Zorg</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="Horeca / retail"><span>Horeca / retail</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="Zakelijke dienstverlening"><span>Zakelijke dienstverlening</span></label>
+        <label class="opt"><input type="checkbox" name="Sector" value="Anders"><span>Anders</span></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Welke thema's wil je vooral zien?</h2>
+      <p class="hint">Deze thema's zetten we bovenaan in je overzicht.</p>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="Thema" value="Verduurzaming / isolatie"><span>Verduurzaming / isolatie</span></label>
+        <label class="opt"><input type="checkbox" name="Thema" value="Energie"><span>Energie</span></label>
+        <label class="opt"><input type="checkbox" name="Thema" value="Innovatie / R&D"><span>Innovatie / R&amp;D</span></label>
+        <label class="opt"><input type="checkbox" name="Thema" value="Personeel / opleiding"><span>Personeel / opleiding</span></label>
+        <label class="opt"><input type="checkbox" name="Thema" value="Investeringen"><span>Investeringen</span></label>
+        <label class="opt"><input type="checkbox" name="Thema" value="Aanbestedingen"><span>Aanbestedingen</span></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Regio</h2>
+      <p class="hint">Landelijke regelingen krijg je altijd; kies je provincie(s) voor regionale potjes.</p>
+      <div class="options">
+        <label class="opt"><input type="checkbox" name="Regio" value="Heel Nederland"><span>Heel Nederland</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Drenthe"><span>Drenthe</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Flevoland"><span>Flevoland</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Friesland"><span>Friesland</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Gelderland"><span>Gelderland</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Groningen"><span>Groningen</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Limburg"><span>Limburg</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Noord-Brabant"><span>Noord-Brabant</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Noord-Holland"><span>Noord-Holland</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Overijssel"><span>Overijssel</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Utrecht"><span>Utrecht</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Zeeland"><span>Zeeland</span></label>
+        <label class="opt"><input type="checkbox" name="Regio" value="Zuid-Holland"><span>Zuid-Holland</span></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Je bedrijf</h2>
+      <div class="field">
+        <label class="lbl">Bedrijfsgrootte</label>
+        <div class="options">
+          <label class="opt"><input type="radio" name="Bedrijfsgrootte" value="ZZP / eenmanszaak"><span>ZZP / eenmanszaak</span></label>
+          <label class="opt"><input type="radio" name="Bedrijfsgrootte" value="2–10 medewerkers"><span>2–10 medewerkers</span></label>
+          <label class="opt"><input type="radio" name="Bedrijfsgrootte" value="11–50 medewerkers"><span>11–50 medewerkers</span></label>
+          <label class="opt"><input type="radio" name="Bedrijfsgrootte" value="51–250 medewerkers"><span>51–250 medewerkers</span></label>
+          <label class="opt"><input type="radio" name="Bedrijfsgrootte" value="250+ medewerkers"><span>250+ medewerkers</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="lbl" for="minbedrag">Minimaal subsidiebedrag</label>
+        <select id="minbedrag" name="Minimaal subsidiebedrag">
+          <option value="Geen minimum">Geen minimum — laat alles zien</option>
+          <option value="Vanaf € 1.000">Vanaf € 1.000</option>
+          <option value="Vanaf € 5.000">Vanaf € 5.000</option>
+          <option value="Vanaf € 10.000">Vanaf € 10.000</option>
+          <option value="Vanaf € 25.000">Vanaf € 25.000</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Hoe vaak wil je mail?</h2>
+      <div class="options">
+        <label class="opt"><input type="radio" name="Frequentie" value="Dagelijks" checked><span>Dagelijks (elke ochtend)</span></label>
+        <label class="opt"><input type="radio" name="Frequentie" value="Wekelijks"><span>Wekelijks (maandagochtend)</span></label>
+      </div>
+      <div class="field" style="margin-top:14px;">
+        <label class="lbl" for="opm">Nog iets wat we moeten weten?</label>
+        <textarea id="opm" name="Opmerkingen" placeholder="Bijv. een specifieke regeling of doelgroep waar je op let."></textarea>
+      </div>
+    </div>
+
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <button type="submit" class="btn" id="submitBtn">Voorkeuren opslaan</button>
+    <p class="foot">SubsidieScan &middot; je gegevens gebruiken we alleen om je overzicht af te stemmen.</p>
+  </form>
+
+  <div class="thanks" id="thanks">
+    <div class="check">&#10003;</div>
+    <h2>Bedankt — het staat genoteerd</h2>
+    <p>We stemmen je dagelijkse SubsidieScan af op je voorkeuren. Je ontvangt de ochtend erna je eerste persoonlijke overzicht. Vragen? Mail <a href="mailto:info@subsidiealert.nl">info@subsidiealert.nl</a>.</p>
+  </div>
+</div>
+
+<script>
+  var form = document.getElementById('prefForm');
+  var errBox = document.getElementById('formError');
+  var btn = document.getElementById('submitBtn');
+  var ENDPOINT = 'https://formsubmit.co/ajax/subsidiescan.alerts@gmail.com';
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errBox.hidden = true;
+
+    if (form._honey.value) { return; } // spam trap
+
+    var naam = form.elements['Naam'].value.trim();
+    var email = form.elements['E-mailadres'].value.trim();
+    var missing = [];
+    if (!naam) missing.push('je naam');
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) missing.push('een geldig e-mailadres');
+    if (missing.length) {
+      errBox.textContent = 'Vul nog in: ' + missing.join(' en ') + '.';
+      errBox.hidden = false;
+      errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    function collect(name) {
+      var out = [];
+      var els = form.elements[name];
+      if (!els) return '';
+      if (els.length === undefined) els = [els];
+      for (var i = 0; i < els.length; i++) { if (els[i].checked) out.push(els[i].value); }
+      return out.join(', ');
+    }
+
+    var payload = {
+      Naam: naam,
+      Bedrijf: form.elements['Bedrijf'].value.trim(),
+      'E-mailadres': email,
+      Sector: collect('Sector') || '(geen opgegeven)',
+      'Thema’s': collect('Thema') || '(geen opgegeven)',
+      Regio: collect('Regio') || '(geen opgegeven)',
+      Bedrijfsgrootte: collect('Bedrijfsgrootte') || '(geen opgegeven)',
+      'Minimaal subsidiebedrag': form.elements['Minimaal subsidiebedrag'].value,
+      Frequentie: collect('Frequentie'),
+      Opmerkingen: form.elements['Opmerkingen'].value.trim(),
+      _subject: 'SubsidieScan voorkeuren – ' + naam,
+      _template: 'table',
+      _captcha: 'false'
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'Bezig met opslaan…';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
+    .then(function (res) {
+      if (!res.ok) throw new Error('bad');
+      form.style.display = 'none';
+      document.getElementById('thanks').style.display = 'block';
+      document.getElementById('thanks').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    })
+    .catch(function () {
+      btn.disabled = false;
+      btn.textContent = 'Voorkeuren opslaan';
+      errBox.textContent = 'Versturen lukte niet. Controleer je internetverbinding en probeer het opnieuw. Lukt het niet? Mail info@subsidiealert.nl.';
+      errBox.hidden = false;
+      errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+</script>
+</body>
+</html>
