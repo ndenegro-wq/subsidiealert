@@ -189,7 +189,8 @@
   var form = document.getElementById('prefForm');
   var errBox = document.getElementById('formError');
   var btn = document.getElementById('submitBtn');
-  var ENDPOINT = 'https://formsubmit.co/ajax/b1c0d837a0f34d800739665c00086695';
+  var ENDPOINT = 'https://api.web3forms.com/submit';
+  var ACCESS_KEY = '637ddb2a-0fc3-444e-88c8-ba89355ce057'; // publieke Web3Forms-sleutel (geen geheim)
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -219,6 +220,10 @@
     }
 
     var payload = {
+      access_key: ACCESS_KEY,
+      subject: 'SubsidieScan voorkeuren – ' + naam,
+      from_name: 'SubsidieScan voorkeuren',
+      replyto: email,
       Naam: naam,
       Bedrijf: form.elements['Bedrijf'].value.trim(),
       'E-mailadres': email,
@@ -228,10 +233,7 @@
       Bedrijfsgrootte: collect('Bedrijfsgrootte') || '(geen opgegeven)',
       'Minimaal subsidiebedrag': form.elements['Minimaal subsidiebedrag'].value,
       Frequentie: collect('Frequentie'),
-      Opmerkingen: form.elements['Opmerkingen'].value.trim(),
-      _subject: 'SubsidieScan voorkeuren – ' + naam,
-      _template: 'table',
-      _captcha: 'false'
+      Opmerkingen: form.elements['Opmerkingen'].value.trim()
     };
 
     btn.disabled = true;
@@ -244,7 +246,8 @@
     })
     .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
     .then(function (res) {
-      if (!res.ok) throw new Error('bad');
+      // Alleen bevestigen als de dienst het expliciet als gelukt meldt
+      if (!res.ok || !res.d || (res.d.success !== true && res.d.success !== 'true')) throw new Error('bad');
       form.style.display = 'none';
       document.getElementById('thanks').style.display = 'block';
       document.getElementById('thanks').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -252,7 +255,7 @@
     .catch(function () {
       btn.disabled = false;
       btn.textContent = 'Voorkeuren opslaan';
-      errBox.textContent = 'Versturen lukte niet. Controleer je internetverbinding en probeer het opnieuw. Lukt het niet? Mail info@subsidiealert.nl.';
+      errBox.textContent = 'Versturen lukte niet. Probeer het opnieuw, of mail je voorkeuren naar info@subsidiealert.nl. Je voorkeuren zijn nog niet opgeslagen.';
       errBox.hidden = false;
       errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
